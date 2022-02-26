@@ -1,5 +1,5 @@
 import BgVideo from 'components/BgVideo';
-import Button, { ButtonType } from 'components/Button';
+import Button, { ButtonType, LinkTarget } from 'components/Button';
 import Container from 'components/Container';
 import Counter from 'components/Counter';
 import { getCounterFromTimeLeft } from 'components/Counter/utils';
@@ -12,7 +12,6 @@ import { ChangeEvent, memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'store';
 import getTimeLeftFrom from 'utils/getTimeLeftFrom';
-import openInNewTab from 'utils/openInNewTab';
 
 import HeroNav from './HeroNav';
 import styles from './IntroHero.module.scss';
@@ -43,10 +42,6 @@ function IntroHero({ mode }: IntroHeroProps) {
 
   const onClearClick = () => {
     dispatch.counter.clearPickedArtifacts();
-  };
-
-  const onExploreClick = () => {
-    openInNewTab(`https://opensea.io/collection/${osCollName}`);
   };
 
   const onMaxInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -166,7 +161,11 @@ function IntroHero({ mode }: IntroHeroProps) {
             {isModeTimer && (
               <>
                 <div className={styles.ButtonWrapperTimer}>
-                  <Button type={ButtonType.Primary} onClick={onExploreClick}>
+                  <Button
+                    type={ButtonType.Primary}
+                    target={LinkTarget.Blank}
+                    href={`https://opensea.io/collection/${osCollName}`}
+                  >
                     Explore
                   </Button>
 

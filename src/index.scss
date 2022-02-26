@@ -113,12 +113,18 @@ p {
   }
 }
 
-button,
-input {
+a,
+input,
+button {
   border: none;
   outline: none;
   appearance: none;
-  line-height: 1.12em;
+  text-decoration: none;
+}
+
+input,
+button {
+  line-height: $line_height_b;
   background-color: transparent;
   font-size: $font_size_b_mobile;
 
