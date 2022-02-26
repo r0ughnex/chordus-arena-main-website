@@ -1,0 +1,30 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+.BgVideo {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+
+  .VideoPlayer,
+  .VideoOverlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .VideoPlayer {
+    object-fit: cover;
+  }
+
+  .VideoOverlay {
+    background: linear-gradient(
+      180deg,
+      rgba($color_bg_medm, 0.65) 0%,
+      rgba($color_bg_medm, 0.75) 50%,
+      rgba($color_bg_medm, 1) 100%
+    );
+  }
+}

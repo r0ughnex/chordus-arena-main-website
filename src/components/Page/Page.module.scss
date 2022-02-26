@@ -1,0 +1,47 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$page_width: 100%;
+$page_height: 100vh;
+$page_height_content_min: 100vh;
+
+.Page {
+  position: absolute;
+  height: $page_height;
+  width: $page_width;
+  left: 0;
+  top: 0;
+
+  overflow: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.PageTrans {
+  @extend .Page;
+  background-color: transparent;
+}
+
+.PageMedm {
+  @extend .Page;
+  background-color: $color_bg_medm;
+}
+
+.PageDark {
+  @extend .Page;
+  background-color: $color_bg_dark;
+}
+
+.PageContent {
+  position: relative;
+  min-height: $page_height_content_min;
+}
+
+.PageNoScroll {
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+
+  .PageContent {
+    height: 100% !important;
+  }
+}

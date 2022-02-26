@@ -1,0 +1,41 @@
+@import './variables';
+
+/* Breakpoint mixins used for layout. */
+@mixin mobile {
+  @media (max-width: #{$bp_width_mobile - 1px}) {
+    @content;
+  }
+}
+
+@mixin mobile-up {
+  @media (min-width: #{$bp_width_mobile}) {
+    @content;
+  }
+}
+
+@mixin desktop-lg-up {
+  @media (min-width: #{$bp_width_desktop_lg}) {
+    @content;
+  }
+}
+
+@mixin desktop-xlg-up {
+  @media (min-width: #{$bp_width_desktop_xlg}) {
+    @content;
+  }
+}
+
+/* Mixin to create tranitions. */
+@mixin transitions($props...) {
+  // create empty list
+  $transitions: ();
+
+  // append each of the given
+  // transition param to list
+  @each $prop in $props {
+    $transitions: append($transitions, ($prop $trans_time_fast $ease), comma);
+  }
+
+  // assign list to style
+  transition: $transitions;
+}

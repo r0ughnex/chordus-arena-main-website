@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import 'index.css';
+@import 'styles/mixins';
+@import 'styles/variables';
+
+html,
+body,
+#root {
+  /**
+   * Scrolling is disabled on root
+   * since it's added to each page.
+   */
+  margin: 0;
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+}
+
+body,
+button {
+  color: $color_font_white;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-size: $font_size_p_mobile;
+  background-color: $color_bg_medm;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  @include mobile-up {
+    font-size: $font_size_p_desktop;
+  }
+}
+
+img {
+  /**
+   * Prevents 'alt' text from being
+   * displayed when image is loading.
+   */
+  color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: inherit;
+}
+
+h1 {
+  margin-top: $font_margin_h1;
+  margin-bottom: $font_margin_h1;
+
+  line-height: $line_height_h1;
+  font-weight: $font_weight_bold;
+  font-size: $font_size_h1_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_h1_desktop;
+  }
+}
+
+h2 {
+  margin-top: $font_margin_h2;
+  margin-bottom: $font_margin_h2;
+
+  line-height: $line_height_h2;
+  font-weight: $font_weight_bold;
+  font-size: $font_size_h2_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_h2_desktop;
+  }
+}
+
+h3 {
+  margin-top: $font_margin_h3;
+  margin-bottom: $font_margin_h3;
+
+  line-height: $line_height_h3;
+  font-weight: $font_weight_norm;
+  font-size: $font_size_h3_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_h3_desktop;
+  }
+}
+
+h4 {
+  margin-top: $font_margin_h4;
+  margin-bottom: $font_margin_h4;
+
+  line-height: $line_height_h4;
+  font-weight: $font_weight_medm;
+  font-size: $font_size_h4_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_h4_desktop;
+  }
+}
+
+p {
+  color: $color_font_medm;
+  margin-top: $font_margin_p;
+  margin-bottom: $font_margin_p;
+
+  line-height: $line_height_p;
+  font-weight: $font_weight_norm;
+  font-size: $font_size_p_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_p_desktop;
+  }
+}
+
+button,
+input {
+  border: none;
+  outline: none;
+  appearance: none;
+  line-height: 1.12em;
+  background-color: transparent;
+  font-size: $font_size_b_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_b_desktop;
+  }
+}
+
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,66 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@import 'components/Section/Section.module.scss';
+
+$nav_pad_sm: $section_pad_v_mobile / 2;
+$nav_pad_lg: $section_pad_v_desktop / 2;
+
+$nav_margin_sm: $nav_pad_sm * 1.25;
+$nav_margin_lg: $nav_pad_lg * 1.25;
+
+$nav_icon_size_sm: 25px;
+$nav_icon_size_lg: 30px;
+
+.HeroNav {
+  width: 100%;
+  position: absolute;
+
+  .NavSection {
+    padding-top: $nav_pad_sm;
+    padding-bottom: $nav_pad_sm;
+
+    @include mobile-up {
+      padding-top: $nav_pad_lg;
+      padding-bottom: $nav_pad_lg;
+    }
+  }
+
+  .NavContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .NavLink {
+    display: block;
+    width: $nav_icon_size_sm;
+    height: $nav_icon_size_sm;
+    margin-right: $nav_margin_sm;
+
+    path {
+      @include transitions(fill);
+      fill: $color_font_medm;
+    }
+
+    &:hover {
+      path {
+        fill: $color_font_white;
+      }
+    }
+
+    &:last-of-type {
+      margin-right: 0 !important;
+    }
+
+    @include mobile-up {
+      width: $nav_icon_size_lg;
+      height: $nav_icon_size_lg;
+      margin-right: $nav_margin_lg;
+    }
+  }
+
+  .NavIcon {
+    width: 100%;
+    height: auto;
+  }
+}

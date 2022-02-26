@@ -1,0 +1,62 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$btn_radius: 6px;
+$btn_width_border: 2px;
+$btn_width_min_sm: 140px;
+$btn_width_min_md: 175px;
+
+$btn_padding: 0.75em;
+$btn_margin_sm: 1.45em;
+$btn_margin_md: 1.65em;
+$btn_disabled_opacity: 0.5;
+
+.Button {
+  display: inline-block;
+  padding: $btn_padding;
+  border-radius: $btn_radius;
+  min-width: $btn_width_min_sm;
+
+  border-style: solid;
+  color: $color_font_white;
+  text-transform: uppercase;
+  border-width: $btn_width_border;
+  @include transitions(border-color, background-color);
+
+  @include mobile-up {
+    min-width: $btn_width_min_md;
+  }
+
+  & + & {
+    margin-left: $btn_margin_sm;
+
+    @include mobile-up {
+      margin-left: $btn_margin_md;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: $btn_disabled_opacity;
+  }
+}
+
+.ButtonPrimary {
+  @extend .Button;
+  border-color: $color_primary;
+
+  &:hover {
+    border-color: $color_primary_dark;
+    background-color: $color_primary_dark;
+  }
+}
+
+.ButtonSecondary {
+  @extend .Button;
+  border-color: $color_secondary;
+
+  &:hover {
+    border-color: $color_secondary_dark;
+    background-color: $color_secondary_dark;
+  }
+}

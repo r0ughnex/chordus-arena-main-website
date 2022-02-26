@@ -1,0 +1,58 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@import 'components/Section/Section.module.scss';
+
+$hero_text_width_max_sm: 500px;
+$hero_text_width_max_md: 580px;
+$hero_btns_margin: 1.65em;
+
+.IntroNav,
+.IntroVideo {
+  top: 0;
+  left: 0;
+}
+
+.IntroHero {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  align-items: center;
+
+  .HeroWrapper {
+    width: 100%;
+    text-align: left;
+  }
+
+  .HeroSub,
+  .HeroTitle {
+    margin-top: 0;
+  }
+
+  .HeroSub {
+    color: $color_primary;
+    text-transform: uppercase;
+  }
+
+  .HeroTitle,
+  .HeroText {
+    max-width: $hero_text_width_max_sm;
+
+    @include mobile-up {
+      max-width: $hero_text_width_max_md;
+    }
+  }
+
+  .ButtonWrapper {
+    margin-bottom: $hero_btns_margin;
+  }
+
+  .ButtonWrapperRaffle {
+    @extend .ButtonWrapper;
+    margin-top: ($hero_btns_margin / 2);
+  }
+
+  .ButtonWrapperTimer {
+    @extend .ButtonWrapper;
+    margin-top: ($hero_btns_margin / 1);
+  }
+}

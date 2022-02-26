@@ -1,0 +1,26 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$counter_width_max_sm: 305px;
+$counter_width_max_md: 375px;
+$counter_letter_space: 0.075em;
+
+.Counter {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  max-width: $counter_width_max_sm;
+
+  @include mobile-up {
+    max-width: $counter_width_max_md;
+  }
+
+  .CounterValue {
+    margin-top: 0;
+    letter-spacing: $counter_letter_space;
+  }
+
+  .CounterLabel {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,71 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@import 'components/Button/Button.module.scss';
+
+$raffle_inputs_margin: 0.75em;
+$raffle_inputs_spacing_sm: 1.15em;
+$raffle_inputs_spacing_md: 1.25em;
+
+.RaffleInputs {
+  margin-bottom: $raffle_inputs_margin;
+  margin-top: ($raffle_inputs_margin * 2);
+
+  .InputRoot {
+    position: relative;
+    display: inline-block;
+  }
+
+  .InputRoot + .InputRoot {
+    margin-left: $raffle_inputs_spacing_sm;
+
+    @include mobile-up {
+      margin-left: $raffle_inputs_spacing_md;
+    }
+  }
+
+  .InputLabel {
+    top: 0;
+    left: 0;
+    margin: 0;
+    height: 100%;
+    opacity: 0.5;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    color: $color_secondary;
+    text-transform: uppercase;
+    background-color: $color_bg_dark;
+
+    width: $btn_width_min_sm / 2;
+    font-size: $font_size_b_mobile;
+
+    @include mobile-up {
+      width: $btn_width_min_md / 2;
+      font-size: $font_size_b_desktop;
+    }
+  }
+
+  .InputElem {
+    @extend .Button;
+    width: $btn_width_min_sm;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+
+    border-color: $color_bg_light;
+    background-color: $color_bg_light;
+    padding-left: $btn_width_min_sm / 1.8;
+
+    @include mobile-up {
+      width: $btn_width_min_md;
+      padding-left: $btn_width_min_md / 1.8;
+    }
+  }
+}
