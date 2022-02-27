@@ -1,12 +1,8 @@
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 
-import { ButtonType } from './types';
+import { ButtonType, LinkTarget } from './types';
 import { getButtonClassName } from './utils';
-
-export enum LinkTarget {
-  Blank = '_blank',
-}
 
 export interface ButtonProps {
   href?: string;
