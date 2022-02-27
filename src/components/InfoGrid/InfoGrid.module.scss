@@ -1,0 +1,58 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@import 'components/Section/Section.module.scss';
+
+$info_grid_space_sm: $section_pad_h_mobile;
+$info_grid_space_lg: $section_pad_h_desktop;
+
+$info_grid_icon_size_sm: 35px;
+$info_grid_icon_size_lg: 40px;
+$info_grid_title_margin: 1.12em;
+
+.InfoGrid {
+  @include mobile-up {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 7.5%;
+    row-gap: $info_grid_space_lg;
+    justify-content: space-between;
+    margin-top: $info_grid_space_lg;
+  }
+}
+
+.InfoGridItem {
+  text-align: left;
+  margin-top: $info_grid_space_sm;
+
+  @include mobile-up {
+    flex-basis: ((100% - (7.5% * 2)) / 3);
+    margin-top: 0;
+  }
+
+  .GridItemIcon {
+    width: $info_grid_icon_size_sm;
+    height: $info_grid_icon_size_sm;
+
+    @include mobile-up {
+      width: $info_grid_icon_size_lg;
+      height: $info_grid_icon_size_lg;
+    }
+
+    path {
+      fill: $color_primary;
+    }
+  }
+
+  .GridItemTitle {
+    margin: $info_grid_title_margin 0;
+  }
+
+  .GridItemText {
+    font-size: $font_size_s_mobile;
+    margin: 0;
+
+    @include mobile-up {
+      font-size: $font_size_s_desktop;
+    }
+  }
+}
