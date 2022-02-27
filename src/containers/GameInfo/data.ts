@@ -3,18 +3,20 @@ import { ReactComponent as CPUIcon } from 'icons/game-cpu.svg';
 import { ReactComponent as MineIcon } from 'icons/game-mine.svg';
 import { ReactComponent as SafeIcon } from 'icons/game-safe.svg';
 import { ReactComponent as ShieldIcon } from 'icons/game-shield.svg';
+import { ReactComponent as ChessIcon } from 'icons/game-strategy.svg';
+import { ReactComponent as WalletIcon } from 'icons/game-wallet.svg';
 
 export const gameInfoItems: InfoGridItem[] = [
   {
     id: 'play-earn',
-    Icon: ShieldIcon,
+    Icon: WalletIcon,
     title: 'Play and earn',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
   },
 
   {
     id: 'turn-based',
-    Icon: ShieldIcon,
+    Icon: ChessIcon,
     title: 'Turn based strategy',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
   },
