@@ -19,9 +19,10 @@ import { HeroMode } from './types';
 
 export interface IntroHeroProps {
   mode: HeroMode;
+  delay?: number;
 }
 
-function IntroHero({ mode }: IntroHeroProps) {
+function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   const { PUBLIC_URL = '' } = process.env;
   const videoAsset = 'videos/ca_intro.mp4';
   const osCollName = 'chordus-arena-genesis';
@@ -56,8 +57,8 @@ function IntroHero({ mode }: IntroHeroProps) {
     animate: { opacity: 1, y: 0 },
     initial: { opacity: 0, y: 15 },
     transition: {
-      delay: 1.5,
       duration: 0.5,
+      delay,
     },
   };
 

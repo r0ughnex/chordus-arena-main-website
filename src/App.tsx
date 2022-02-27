@@ -9,8 +9,8 @@ function App() {
   return (
     <Page>
       <main className={styles.App}>
-        <IntroHero mode={HeroMode.Timer} />
-        <GameInfo />
+        <IntroHero mode={HeroMode.Timer} delay={1.5} />
+        <GameInfo delay={2} />
       </main>
     </Page>
   );
