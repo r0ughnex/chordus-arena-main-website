@@ -58,6 +58,9 @@ $section_pad_v_desktop: 60px * 1.25;
 .SectionText {
   a {
     color: $color_primary;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 0.015em;
   }
 }
 

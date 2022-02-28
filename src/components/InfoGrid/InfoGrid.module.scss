@@ -26,9 +26,12 @@ $info_grid_title_margin: 1.12em;
 
   @include mobile-up {
     flex-basis: ((100% - (7.5% * 2)) / 3);
+    max-width: (100% / 3);
     margin-top: 0;
   }
+}
 
+.InfoGridItem {
   .GridItemIcon {
     width: $info_grid_icon_size_sm;
     height: $info_grid_icon_size_sm;

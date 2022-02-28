@@ -24,7 +24,7 @@ export interface IntroHeroProps {
 
 function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   const { PUBLIC_URL = '' } = process.env;
-  const videoAsset = 'videos/ca_intro.mp4';
+  const videoAsset = 'videos/ca-intro.mp4';
   const osCollName = 'chordus-arena-genesis';
 
   const minMax = useSelector(selectMinMax);

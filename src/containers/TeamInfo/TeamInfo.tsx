@@ -4,9 +4,11 @@ import Section, {
   SectionTitle,
   SectionType,
 } from 'components/Section';
+import TeamGrid from 'components/TeamGrid';
 import { motion } from 'framer-motion';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
+import { teamInfoItems } from '.';
 import styles from './TeamInfo.module.scss';
 
 export interface TeamInfoProps {
@@ -25,8 +27,10 @@ function TeamInfo({ delay = 1 }: TeamInfoProps) {
 
   const renderContactUsLink = () => {
     const mailTo = 'contact@chordusarena.com';
-    return <a href={`mailto:${mailTo}`}>contact us</a>;
+    return <a href={`mailto:${mailTo}`}>contact&nbsp;us</a>;
   };
+
+  const memoizedTeamItems = useMemo(() => teamInfoItems, []);
 
   return (
     <Section className={styles.TeamInfo} type={SectionType.Medm}>
@@ -40,6 +44,8 @@ function TeamInfo({ delay = 1 }: TeamInfoProps) {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo {renderContactUsLink()}.
           </SectionText>
+
+          <TeamGrid items={memoizedTeamItems} />
         </motion.div>
       </Container>
     </Section>

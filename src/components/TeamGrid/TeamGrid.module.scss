@@ -1,0 +1,134 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@import 'components/Section/Section.module.scss';
+
+$team_grid_space_sm: $section_pad_h_mobile;
+$team_grid_space_lg: $section_pad_h_desktop;
+
+$team_grid_icon_size_sm: 35px;
+$team_grid_icon_size_lg: 40px;
+$team_grid_title_margin: 1.12em;
+
+$team_link_margin: 0.75em;
+$team_item_width_min: 290px;
+$team_item_grid_gap_sm: 26px;
+$team_item_grid_gap_lg: 30px;
+
+$team_img_size_sm: 140px;
+$team_img_size_lg: 150px;
+$team_img_opacity_norm: 1;
+$team_img_opacity_fback: 0.65;
+$team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
+
+.TeamGrid {
+  @include mobile-up {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 7.5%;
+    row-gap: $team_grid_space_lg;
+    justify-content: space-between;
+    margin-top: $team_grid_space_lg;
+  }
+}
+
+.TeamGridItem {
+  flex-grow: 1;
+  display: flex;
+  text-align: left;
+  margin-top: $team_grid_space_sm;
+  min-width: $team_item_width_min;
+  grid-gap: $team_item_grid_gap_sm;
+
+  @include mobile-up {
+    flex-basis: ((100% - (7.5% * 2)) / 3);
+    grid-gap: $team_item_grid_gap_lg;
+    max-width: (100% / 2);
+    margin-top: 0;
+  }
+}
+
+.TeamGridItem {
+  .GridItemWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .GridItemImage {
+    border-radius: 50%;
+    width: $team_img_size_sm;
+    height: $team_img_size_sm;
+    @include transitions(opacity);
+    background-color: $color_bg_light;
+
+    @include mobile-up {
+      width: $team_img_size_lg;
+      height: $team_img_size_lg;
+    }
+  }
+
+  .GridItemImageDefault {
+    @extend .GridItemImage;
+    filter: $team_img_filter_inkwell;
+    opacity: $team_img_opacity_norm;
+  }
+
+  .GridItemImageFallback {
+    @extend .GridItemImage;
+    opacity: $team_img_opacity_fback;
+  }
+}
+
+.TeamGridItem {
+  .GridItemTitle,
+  .GridItemText,
+  .GridItemLinks {
+    margin-top: 0;
+  }
+
+  .GridItemTitle {
+    margin-bottom: $team_grid_title_margin;
+  }
+
+  .GridItemText {
+    font-size: $font_size_s_mobile;
+
+    @include mobile-up {
+      font-size: $font_size_s_desktop;
+    }
+  }
+
+  .GridItemLink {
+    vertical-align: top;
+    display: inline-block;
+    width: $font_size_s_mobile;
+    height: $font_size_s_mobile;
+    margin-right: $team_link_margin;
+
+    path {
+      @include transitions(fill);
+      fill: $color_font_medm;
+    }
+
+    &:hover {
+      path {
+        fill: $color_font_white;
+      }
+    }
+
+    &:last-of-type {
+      margin-right: 0 !important;
+    }
+
+    @include mobile-up {
+      width: $font_size_s_desktop;
+      height: $font_size_s_desktop;
+    }
+  }
+
+  .GridItemIcon {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
