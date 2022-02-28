@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import styles from './InfoGrid.module.scss';
 
@@ -33,4 +33,4 @@ function InfoGrid({ className, items }: InfoGridProps) {
   );
 }
 
-export default InfoGrid;
+export default memo(InfoGrid);
