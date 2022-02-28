@@ -36,7 +36,7 @@ function TeamInfo({ delay = 1 }: TeamInfoProps) {
     <Section className={styles.TeamInfo} type={SectionType.Medm}>
       <Container>
         <motion.div {...motionAnimPropsContent}>
-          <SectionTitle>Core Team</SectionTitle>
+          <SectionTitle>Core team</SectionTitle>
 
           <SectionText>
             We are hiring! Lorem ipsum, consectetur adipiscing elit, sed do
