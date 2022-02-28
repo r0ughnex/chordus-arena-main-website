@@ -96,6 +96,12 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
     @include mobile-up {
       font-size: $font_size_s_desktop;
     }
+
+    br {
+      @include mobile {
+        display: none !important;
+      }
+    }
   }
 
   .GridItemLink {

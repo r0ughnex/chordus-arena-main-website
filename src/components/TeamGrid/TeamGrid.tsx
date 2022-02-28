@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ReactComponent as LinkedInIcon } from 'icons/linkedin.svg';
 import { ReactComponent as TwitterIcon } from 'icons/twitter.svg';
-import { memo } from 'react';
+import { Fragment, memo } from 'react';
 
 import styles from './TeamGrid.module.scss';
 
@@ -10,7 +10,7 @@ export type TeamGridItem = {
   twitter?: string;
   picture?: string;
   title: string;
-  text: string;
+  text: string[];
   id: string;
 };
 
@@ -52,7 +52,26 @@ function TeamGrid({ className, items }: TeamGridProps) {
 
             <div className={styles.GridItemWrap}>
               <h4 className={styles.GridItemTitle}>{title}</h4>
-              <p className={styles.GridItemText}>{text}</p>
+
+              <p className={styles.GridItemText}>
+                {text.map((textContent, index) => {
+                  const key = `text-${index}`;
+                  const isFirst = index === 0;
+                  const textSeperator = ', ';
+
+                  if (isFirst) {
+                    return <Fragment key={key}>{textContent}</Fragment>;
+                  }
+
+                  return (
+                    <Fragment key={key}>
+                      {textSeperator}
+                      <br />
+                      {textContent}
+                    </Fragment>
+                  );
+                })}
+              </p>
 
               {(linkedIn || twitter) && (
                 <div className={styles.GridItemLinks}>
