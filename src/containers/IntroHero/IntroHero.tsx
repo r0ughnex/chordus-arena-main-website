@@ -3,6 +3,7 @@ import Button, { ButtonType, LinkTarget } from 'components/Button';
 import Container from 'components/Container';
 import Counter from 'components/Counter';
 import { getCounterFromTimeLeft } from 'components/Counter/utils';
+import HeroNav from 'components/HeroNav';
 import RaffleInputs from 'components/RaffleInputs';
 import Section, { SectionText, SectionTitle } from 'components/Section';
 import { motion } from 'framer-motion';
@@ -13,7 +14,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'store';
 import getTimeLeftFrom from 'utils/getTimeLeftFrom';
 
-import HeroNav from './HeroNav';
 import styles from './IntroHero.module.scss';
 import { HeroMode } from './types';
 
@@ -53,7 +53,7 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
     dispatch.minMax.setMinInputValue(e.target.value);
   };
 
-  const motionAnimPropsText = {
+  const motionAnimPropsContent = {
     animate: { opacity: 1, y: 0 },
     initial: { opacity: 0, y: 15 },
     transition: {
@@ -63,7 +63,7 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   };
 
   const motionAnimPropsNav = {
-    ...motionAnimPropsText,
+    ...motionAnimPropsContent,
     animate: { opacity: 1 },
     initial: { opacity: 0 },
   };
@@ -99,7 +99,7 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
 
       <Section className={styles.IntroHero}>
         <Container className={styles.HeroWrapper}>
-          <motion.div {...motionAnimPropsText}>
+          <motion.div {...motionAnimPropsContent}>
             <h3 className={styles.HeroSub}>Chordus Arena</h3>
 
             <SectionTitle className={styles.HeroTitle}>
