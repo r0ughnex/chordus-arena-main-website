@@ -91,11 +91,24 @@ h4 {
   margin-bottom: $font_margin_h4;
 
   line-height: $line_height_h4;
-  font-weight: $font_weight_medm;
+  font-weight: $font_weight_bold;
   font-size: $font_size_h4_mobile;
 
   @include mobile-up {
     font-size: $font_size_h4_desktop;
+  }
+}
+
+h5 {
+  margin-top: $font_margin_h5;
+  margin-bottom: $font_margin_h5;
+
+  line-height: $line_height_h5;
+  font-weight: $font_weight_norm;
+  font-size: $font_size_h5_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_h5_desktop;
   }
 }
 
@@ -113,12 +126,19 @@ p {
   }
 }
 
-button,
-input {
+a,
+img,
+input,
+button {
   border: none;
   outline: none;
   appearance: none;
-  line-height: 1.12em;
+  text-decoration: none;
+}
+
+input,
+button {
+  line-height: $line_height_b;
   background-color: transparent;
   font-size: $font_size_b_mobile;
 

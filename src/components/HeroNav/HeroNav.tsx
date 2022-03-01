@@ -10,9 +10,11 @@ import styles from './HeroNav.module.scss';
 
 export interface HeroNavProps {
   className?: string;
+  copyright?: boolean;
 }
 
-function HeroNav({ className }: HeroNavProps) {
+function HeroNav({ className, copyright }: HeroNavProps) {
+  const copyYear = new Date().getFullYear();
   const osCollName = 'chordus-arena-genesis';
   const twitterHandle = 'ChordusArena';
   const discordInvite = 'NesAmStaEc';
@@ -27,6 +29,12 @@ function HeroNav({ className }: HeroNavProps) {
     <div className={classNames(styles.HeroNav, className)}>
       <Section className={styles.NavSection}>
         <Container className={styles.NavContainer}>
+          {copyright && (
+            <p className={styles.NavCopyright}>
+              © {copyYear} Chordus Arena Inc. All Rights Reserved.
+            </p>
+          )}
+
           <a
             {...linkElemProps}
             href={`https://opensea.io/collection/${osCollName}`}

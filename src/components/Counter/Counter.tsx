@@ -19,17 +19,17 @@ function Counter({ className, left, center, right }: CounterProps) {
     <div className={classNames(styles.Counter, className)}>
       <div>
         <h2 className={styles.CounterValue}>{left.value}</h2>
-        <h4 className={styles.CounterLabel}>{left.label}</h4>
+        <h5 className={styles.CounterLabel}>{left.label}</h5>
       </div>
 
       <div>
         <h2 className={styles.CounterValue}>{center.value}</h2>
-        <h4 className={styles.CounterLabel}>{center.label}</h4>
+        <h5 className={styles.CounterLabel}>{center.label}</h5>
       </div>
 
       <div>
         <h2 className={styles.CounterValue}>{right.value}</h2>
-        <h4 className={styles.CounterLabel}>{right.label}</h4>
+        <h5 className={styles.CounterLabel}>{right.label}</h5>
       </div>
     </div>
   );

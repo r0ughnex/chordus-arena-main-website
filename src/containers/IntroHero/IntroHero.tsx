@@ -1,8 +1,9 @@
 import BgVideo from 'components/BgVideo';
-import Button, { ButtonType } from 'components/Button';
+import Button, { ButtonType, LinkTarget } from 'components/Button';
 import Container from 'components/Container';
 import Counter from 'components/Counter';
 import { getCounterFromTimeLeft } from 'components/Counter/utils';
+import HeroNav from 'components/HeroNav';
 import RaffleInputs from 'components/RaffleInputs';
 import Section, { SectionText, SectionTitle } from 'components/Section';
 import { motion } from 'framer-motion';
@@ -12,19 +13,18 @@ import { ChangeEvent, memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'store';
 import getTimeLeftFrom from 'utils/getTimeLeftFrom';
-import openInNewTab from 'utils/openInNewTab';
 
-import HeroNav from './HeroNav';
 import styles from './IntroHero.module.scss';
 import { HeroMode } from './types';
 
 export interface IntroHeroProps {
   mode: HeroMode;
+  delay?: number;
 }
 
-function IntroHero({ mode }: IntroHeroProps) {
+function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   const { PUBLIC_URL = '' } = process.env;
-  const videoAsset = 'videos/ca_intro.mp4';
+  const videoAsset = 'videos/ca-intro.mp4';
   const osCollName = 'chordus-arena-genesis';
 
   const minMax = useSelector(selectMinMax);
@@ -45,10 +45,6 @@ function IntroHero({ mode }: IntroHeroProps) {
     dispatch.counter.clearPickedArtifacts();
   };
 
-  const onExploreClick = () => {
-    openInNewTab(`https://opensea.io/collection/${osCollName}`);
-  };
-
   const onMaxInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch.minMax.setMaxInputValue(e.target.value);
   };
@@ -57,17 +53,17 @@ function IntroHero({ mode }: IntroHeroProps) {
     dispatch.minMax.setMinInputValue(e.target.value);
   };
 
-  const motionAnimPropsText = {
+  const motionAnimPropsContent = {
     animate: { opacity: 1, y: 0 },
     initial: { opacity: 0, y: 15 },
     transition: {
-      delay: 1.5,
       duration: 0.5,
+      delay,
     },
   };
 
   const motionAnimPropsNav = {
-    ...motionAnimPropsText,
+    ...motionAnimPropsContent,
     animate: { opacity: 1 },
     initial: { opacity: 0 },
   };
@@ -103,7 +99,7 @@ function IntroHero({ mode }: IntroHeroProps) {
 
       <Section className={styles.IntroHero}>
         <Container className={styles.HeroWrapper}>
-          <motion.div {...motionAnimPropsText}>
+          <motion.div {...motionAnimPropsContent}>
             <h3 className={styles.HeroSub}>Chordus Arena</h3>
 
             <SectionTitle className={styles.HeroTitle}>
@@ -166,7 +162,11 @@ function IntroHero({ mode }: IntroHeroProps) {
             {isModeTimer && (
               <>
                 <div className={styles.ButtonWrapperTimer}>
-                  <Button type={ButtonType.Primary} onClick={onExploreClick}>
+                  <Button
+                    type={ButtonType.Primary}
+                    target={LinkTarget.Blank}
+                    href={`https://opensea.io/collection/${osCollName}`}
+                  >
                     Explore
                   </Button>
 

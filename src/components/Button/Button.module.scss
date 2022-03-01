@@ -12,10 +12,23 @@ $btn_margin_md: 1.65em;
 $btn_disabled_opacity: 0.5;
 
 .Button {
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+
   display: inline-block;
   padding: $btn_padding;
   border-radius: $btn_radius;
   min-width: $btn_width_min_sm;
+
+  line-height: $line_height_b;
+  background-color: transparent;
+  font-size: $font_size_b_mobile;
+
+  @include mobile-up {
+    font-size: $font_size_b_desktop;
+  }
 
   border-style: solid;
   color: $color_font_white;
@@ -35,7 +48,8 @@ $btn_disabled_opacity: 0.5;
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &[disabled] {
     pointer-events: none;
     opacity: $btn_disabled_opacity;
   }
