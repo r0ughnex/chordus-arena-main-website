@@ -31,8 +31,10 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   const counter = useSelector(selectCounter);
   const dispatch = useDispatch<Dispatch>();
 
+  const isModeStats = mode === HeroMode.Stats;
   const isModeTimer = mode === HeroMode.Timer;
   const isModeRaffle = mode === HeroMode.Raffle;
+
   const countdownRef = useRef<NodeJS.Timeout | null>(null);
   const countdownEnd = 'Thu Mar 14 2022 16:00:00 GMT+1100';
   const [timeLeft, setTimeLeft] = useState(getTimeLeftFrom(countdownEnd));
@@ -159,24 +161,43 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
               </>
             )}
 
-            {isModeTimer && (
-              <>
-                <div className={styles.ButtonWrapperTimer}>
-                  <Button
-                    type={ButtonType.Primary}
-                    target={LinkTarget.Blank}
-                    href={`https://opensea.io/collection/${osCollName}`}
-                  >
-                    Explore
-                  </Button>
+            {(isModeTimer || isModeStats) && (
+              <div className={styles.ButtonWrapperTimer}>
+                <Button
+                  type={ButtonType.Primary}
+                  target={LinkTarget.Blank}
+                  href={`https://opensea.io/collection/${osCollName}`}
+                >
+                  Explore
+                </Button>
 
-                  <Button type={ButtonType.Secondary} disabled>
-                    Sold out
-                  </Button>
-                </div>
+                <Button type={ButtonType.Secondary} disabled>
+                  Sold out
+                </Button>
+              </div>
+            )}
 
-                <Counter {...getCounterFromTimeLeft(timeLeft)} />
-              </>
+            {isModeTimer && <Counter {...getCounterFromTimeLeft(timeLeft)} />}
+
+            {/**
+             * @TODO: Change this to be retreived,
+             * using the OpenSea NFT API instead.
+             */}
+            {isModeStats && (
+              <Counter
+                left={{
+                  label: 'Collectables',
+                  value: '450',
+                }}
+                center={{
+                  label: 'Members',
+                  value: '2.9k',
+                }}
+                right={{
+                  label: 'Holders',
+                  value: '95',
+                }}
+              />
             )}
           </motion.div>
         </Container>

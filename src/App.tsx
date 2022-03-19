@@ -10,7 +10,7 @@ function App() {
   return (
     <Page>
       <main className={styles.App}>
-        <IntroHero mode={HeroMode.Timer} delay={1.5} />
+        <IntroHero mode={HeroMode.Stats} delay={1.5} />
         <GameInfo delay={2.0} />
         <TeamInfo delay={2.5} />
       </main>
