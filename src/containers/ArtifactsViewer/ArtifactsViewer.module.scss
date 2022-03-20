@@ -1,0 +1,48 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$color_bg_grad_dark: #1b272e;
+$color_bg_grad_medm: #1b272e;
+$color_bg_grad_grey: $color_bg_medm;
+
+$viewer_height_min: 100vh;
+$viewer_bg_rad_grad: radial-gradient(
+  circle,
+  rgba($color_bg_grad_dark, 0.75) 0%,
+  rgba($color_bg_grad_medm, 0.75) 21%,
+  rgba($color_bg_grad_grey, 0.75) 42%
+);
+
+.ViewerSection {
+  position: relative;
+}
+
+.ViewerSectionTop {
+  @extend .ViewerSection;
+}
+
+.ViewerSectionBttm {
+  @extend .ViewerSection;
+  min-height: $viewer_height_min;
+  background: $viewer_bg_rad_grad;
+}
+
+.ViewerFrame {
+  @include transitions(opacity);
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.ViewerFrameHidden {
+  @extend .ViewerFrame;
+  opacity: 0;
+}
+
+.ViewerFrameVisible {
+  @extend .ViewerFrame;
+  opacity: 1;
+}

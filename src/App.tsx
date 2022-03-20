@@ -1,3 +1,4 @@
+import ArtifactsViewer from 'containers/ArtifactsViewer';
 import GameInfo from 'containers/GameInfo';
 import IntroHero from 'containers/IntroHero';
 import { HeroMode } from 'containers/IntroHero/types';
@@ -9,8 +10,9 @@ function App() {
   return (
     <main className={styles.App}>
       <IntroHero mode={HeroMode.Stats} delay={1.5} />
-      <GameInfo delay={2.0} />
-      <TeamInfo delay={2.5} />
+      <ArtifactsViewer delay={2.0} />
+      <GameInfo delay={2.5} />
+      <TeamInfo delay={3.0} />
     </main>
   );
 }
