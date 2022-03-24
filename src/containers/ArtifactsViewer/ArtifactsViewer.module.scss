@@ -28,21 +28,10 @@ $viewer_bg_rad_grad: radial-gradient(
 }
 
 .ViewerFrame {
-  @include transitions(opacity);
   pointer-events: none;
   position: absolute;
   height: 100%;
   width: 100%;
   left: 0;
   top: 0;
-}
-
-.ViewerFrameHidden {
-  @extend .ViewerFrame;
-  opacity: 0;
-}
-
-.ViewerFrameVisible {
-  @extend .ViewerFrame;
-  opacity: 1;
 }

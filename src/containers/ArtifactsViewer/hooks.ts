@@ -2,11 +2,12 @@
 import Sketchfab from '@sketchfab/viewer-api';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { viewerOptions } from './data';
+import { viewerConfig, viewerOptions } from './data';
 import {
   UseArtifactsViewerParams,
   UseArtifactsViewerResponse,
   ViewerApi,
+  ViewerClient,
 } from './types';
 
 export function useArtifactsViewer({
@@ -20,33 +21,61 @@ export function useArtifactsViewer({
   useEffect(() => {
     const clearPrevTimeout = () => {
       const id = timeoutIdRef.current;
+      const api = apiRef.current;
 
       if (id) {
         clearTimeout(id);
         timeoutIdRef.current = null;
       }
+
+      if (api) {
+        api.pause();
+        apiRef.current = null;
+      }
     };
 
-    clearPrevTimeout();
     setIsReady(false);
+    clearPrevTimeout();
     if (!modelId || !frameRef.current) {
       return;
     }
 
-    // NOTE: Always load a specific version of 'viewer-api'.
-    const client = new Sketchfab('1.12.0', frameRef.current);
+    // Load a specific version of 'viewer-api' to avoid breaking changes.
+    const { spinAnimName, spinAnimSpeed, initLoadDelay, viewerApiVersion } =
+      viewerConfig;
+
+    const client = new Sketchfab(
+      viewerApiVersion,
+      frameRef.current,
+    ) as ViewerClient;
 
     client.init(modelId, {
       ...viewerOptions,
       success: (api: ViewerApi) => {
-        api.start();
-        api.addEventListener('viewerready', () => {
-          api.setSpeed(0.5);
+        api.start(() => {
+          api.addEventListener('viewerready', () => {
+            api.getAnimations((error, animations) => {
+              if (error) {
+                return;
+              }
 
-          timeoutIdRef.current = window.setTimeout(() => {
-            apiRef.current = api;
-            setIsReady(true);
-          }, 1250);
+              // Only extract and play the rotation, spin animations.
+              const rotationAnim = animations.find(([, animName]) => {
+                return animName?.toLowerCase() === spinAnimName;
+              });
+
+              const [animUid, animName] = rotationAnim || [];
+              timeoutIdRef.current = window.setTimeout(() => {
+                setIsReady(true);
+                apiRef.current = api;
+                if (animUid && animName) {
+                  api.setSpeed(spinAnimSpeed);
+                  api.setCurrentAnimationByUID(animUid);
+                  api.play();
+                }
+              }, initLoadDelay);
+            });
+          });
         });
       },
     });

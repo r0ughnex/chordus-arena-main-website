@@ -5,6 +5,8 @@
 export const viewerOptions = {
   dnt: 1,
   camera: 0,
+  autospin: 0,
+  autostart: 0,
   dof_circle: 0,
   scrollwheel: 0,
   transparent: 1,
@@ -30,3 +32,56 @@ export const viewerOptions = {
   ui_inspector: 0,
   ui_watermark: 0,
 };
+
+// Custom viewer configuration.
+export const viewerConfig = {
+  viewerApiVersion: '1.12.0',
+  spinAnimName: 'rotation',
+  spinAnimSpeed: 0.5,
+  initLoadDelay: 1250,
+};
+
+export enum ArtifactType {
+  Shield = 'shield',
+}
+
+export enum ElementType {
+  Neutral = 'neutral',
+  Poison = 'poison',
+  Fire = 'fire',
+  Frost = 'frost',
+  Light = 'light',
+  Darkness = 'darkness',
+}
+
+export const viewerData = {
+  [ArtifactType.Shield]: {
+    [ElementType.Neutral]: {
+      id: 'a8a42d153b284543824efdd45ad05056',
+    },
+
+    [ElementType.Poison]: {
+      id: '06c3ff2c4f3344c284490cb4f0ba90ac',
+    },
+
+    [ElementType.Fire]: {
+      id: '8e33790459984f6498a6e82eb855e289',
+    },
+
+    [ElementType.Frost]: {
+      id: 'f133a8619e66473d9d18577dfb46cec0',
+    },
+
+    [ElementType.Light]: {
+      id: 'e7e47e56bff9490ab6ac27ecb9c00aa7',
+    },
+
+    [ElementType.Darkness]: {
+      id: 'bc4bba1a9c6343128608a013114b8aeb',
+    },
+  },
+};
+
+export const artifactsShield = Object.values(
+  viewerData[ArtifactType.Shield],
+).map(({ id }) => id);

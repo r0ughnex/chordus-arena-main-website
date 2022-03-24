@@ -5,9 +5,10 @@ import Section, {
   SectionType,
 } from 'components/Section';
 import { motion } from 'framer-motion';
-import { memo, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 import styles from './ArtifactsViewer.module.scss';
+import { artifactsShield } from './data';
 import { useArtifactsViewer } from './hooks';
 
 export interface ArtifactsViewerProps {
@@ -15,10 +16,10 @@ export interface ArtifactsViewerProps {
 }
 
 function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
-  console.log('---------------------------------');
-  console.log('ArtifactsViewer: render() called.');
-  const [modelId] = useState('bc4bba1a9c6343128608a013114b8aeb');
+  const intervalIdRef = useRef<number | null>(null);
   const frameRef = useRef<null | HTMLIFrameElement>(null);
+  const [modelId, setModelId] = useState(artifactsShield[0]);
+  const { isViewerReady } = useArtifactsViewer({ modelId, frameRef });
 
   const motionAnimPropsContent = {
     animate: { opacity: 1, y: 0 },
@@ -29,7 +30,42 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
     },
   };
 
-  const { isViewerReady } = useArtifactsViewer({ modelId, frameRef });
+  const motionAnimPropsFrame = {
+    animate: { opacity: isViewerReady ? 1 : 0 },
+    initial: { opacity: 0 },
+    transition: {
+      duration: 0.5,
+    },
+  };
+
+  /**
+   * @TODO: Effect to test if the artifacts,
+   * can be changed by user selection or not.
+   * To be removed once the carousel is built!
+   */
+  useEffect(() => {
+    const testIntervalDelay = 15000;
+    const clearPrevInterval = () => {
+      const id = intervalIdRef.current;
+
+      if (id) {
+        clearInterval(id);
+        intervalIdRef.current = null;
+      }
+    };
+
+    clearPrevInterval();
+    let currentIndex = 0;
+    intervalIdRef.current = window.setInterval(() => {
+      currentIndex += 1;
+
+      if (currentIndex >= artifactsShield.length) {
+        currentIndex = 0;
+      }
+
+      setModelId(artifactsShield[currentIndex]);
+    }, testIntervalDelay);
+  }, []);
 
   return (
     <>
@@ -49,20 +85,17 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
       </Section>
 
       <Section className={styles.ViewerSectionBttm} type={SectionType.Medm}>
-        <iframe
-          ref={frameRef}
-          web-share="true"
+        <motion.iframe
+          {...motionAnimPropsFrame}
           xr-spatial-tracking="true"
           execution-while-not-rendered="true"
           execution-while-out-of-viewport="true"
           allow="autoplay; xr-spatial-tracking"
           title="Chordus Arena Artifacts Viewer"
           sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
-          className={
-            !isViewerReady
-              ? styles.ViewerFrameHidden
-              : styles.ViewerFrameVisible
-          }
+          className={styles.ViewerFrame}
+          web-share="true"
+          ref={frameRef}
         />
       </Section>
     </>
