@@ -105,11 +105,12 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
   }
 
   .GridItemLink {
-    vertical-align: top;
-    display: inline-block;
-    width: $font_size_s_mobile;
-    height: $font_size_s_mobile;
+    @include transitions(opacity);
     margin-right: $team_link_margin;
+    height: $font_size_s_mobile;
+    width: $font_size_s_mobile;
+    display: inline-block;
+    vertical-align: top;
 
     path {
       @include transitions(fill);
@@ -132,9 +133,21 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
     }
   }
 
+  .GridItemLinkEnabled {
+    @extend .GridItemLink;
+    opacity: 1;
+  }
+
+  .GridItemLinkDisabled {
+    @extend .GridItemLink;
+    pointer-events: none;
+    opacity: 0.35;
+  }
+
   .GridItemIcon {
-    width: 100%;
-    height: auto;
+    @include transitions(opacity);
     display: block;
+    height: auto;
+    width: 100%;
   }
 }

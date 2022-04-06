@@ -5,7 +5,7 @@ export const teamInfoItems: TeamGridItem[] = [
   {
     id: 'alex-varshavsky',
     title: 'Alexander Varshavsky',
-    text: ['Founder and Project Lead', 'passionate entrepreneur'],
+    text: ['Founder and Project Lead', 'passionate entrepreneur.'],
     linkedIn: 'https://www.linkedin.com/in/alexandervarshavsky/',
     picture: `${imgPath}/team/alex-varshavsky.jpg`,
     twitter: 'https://twitter.com/Byblik196',
@@ -14,7 +14,7 @@ export const teamInfoItems: TeamGridItem[] = [
   {
     id: 'andrey-varshavsky',
     title: 'Andrey Varshavsky',
-    text: ['Co-Founder and Lead Developer', 'seasoned software architect'],
+    text: ['Co-Founder and Lead Developer', 'seasoned software architect.'],
     linkedIn: 'https://www.linkedin.com/in/andreyvarshavsky/',
     picture: `${imgPath}/team/andrey-varshavsky.jpg`,
     twitter: 'https://twitter.com/ChordusArena',
@@ -27,5 +27,25 @@ export const teamInfoItems: TeamGridItem[] = [
     linkedIn: 'https://www.linkedin.com/in/pradeepsekarg/',
     picture: `${imgPath}/team/pradeep-sekar.jpg`,
     twitter: 'https://twitter.com/r0ughnex',
+  },
+
+  {
+    id: 'jonathan',
+    title: 'Jonathan',
+    text: ['Community and collaborations'],
+    picture: `${imgPath}/team/jonathan.jpg`,
+  },
+
+  {
+    id: 'yohe',
+    title: 'Yohe',
+    text: ['Community manager'],
+    picture: `${imgPath}/team/yohe.jpg`,
+  },
+
+  {
+    id: 'cathy',
+    title: 'Cathy',
+    text: ['Community manager'],
   },
 ];

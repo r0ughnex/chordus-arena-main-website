@@ -25,7 +25,6 @@ function TeamGrid({ className, items }: TeamGridProps) {
   const defaultImageSrc = `${PUBLIC_URL}/${defaultImage}`;
 
   const linkElemProps = {
-    className: styles.GridItemLink,
     rel: 'noopener noreferrer',
     target: '_blank',
   };
@@ -73,21 +72,28 @@ function TeamGrid({ className, items }: TeamGridProps) {
                 })}
               </p>
 
-              {(linkedIn || twitter) && (
-                <div className={styles.GridItemLinks}>
-                  {twitter && (
-                    <a {...linkElemProps} href={linkedIn}>
-                      <LinkedInIcon className={styles.GridItemIcon} />
-                    </a>
-                  )}
+              <div className={styles.GridItemLinks}>
+                {[linkedIn, twitter].map((href, index) => {
+                  const key = `${href}_${index}`;
+                  const isTwitter = href === twitter;
+                  const LinkIcon = isTwitter ? TwitterIcon : LinkedInIcon;
 
-                  {linkedIn && (
-                    <a {...linkElemProps} href={twitter}>
-                      <TwitterIcon className={styles.GridItemIcon} />
+                  return (
+                    <a
+                      {...linkElemProps}
+                      key={key}
+                      href={href}
+                      className={
+                        href
+                          ? styles.GridItemLinkEnabled
+                          : styles.GridItemLinkDisabled
+                      }
+                    >
+                      <LinkIcon className={styles.GridItemIcon} />
                     </a>
-                  )}
-                </div>
-              )}
+                  );
+                })}
+              </div>
             </div>
           </div>
         );
