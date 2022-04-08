@@ -172,7 +172,7 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
                 </Button>
 
                 <Button type={ButtonType.Secondary} disabled>
-                  Sold out
+                  Whitepaper
                 </Button>
               </div>
             )}
