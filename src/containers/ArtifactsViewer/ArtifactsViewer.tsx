@@ -75,10 +75,10 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
             <SectionTitle>Ancient artifacts</SectionTitle>
 
             <SectionText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Competition rules allow only melee weapons, made stronger by using
+              one of the six special elements, gathered from the farthest parts
+              of the universe and brought to the arena where they can be forged
+              by forge masters into Ancient Artifacts.
             </SectionText>
           </motion.div>
         </Container>
