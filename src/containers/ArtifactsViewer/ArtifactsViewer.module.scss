@@ -1,5 +1,6 @@
 @import 'styles/mixins';
 @import 'styles/variables';
+@import 'components/Section/Section.module.scss';
 
 $color_bg_grad_dark: #1b272e;
 $color_bg_grad_medm: #1b272e;
@@ -17,14 +18,32 @@ $viewer_bg_rad_grad: radial-gradient(
   position: relative;
 }
 
-.ViewerSectionTop {
+.ViewerSectionContent {
   @extend .ViewerSection;
+  z-index: 2;
 }
 
-.ViewerSectionBttm {
+.ViewerSectionFrame {
   @extend .ViewerSection;
   min-height: $viewer_height_min;
   background: $viewer_bg_rad_grad;
+  margin-top: -($section_pad_v_mobile * 1.75);
+
+  @include mobile-up {
+    margin-top: -($section_pad_v_desktop * 1.75);
+  }
+}
+
+.ViewerSectionCarousel {
+  @extend .ViewerSection;
+  margin-top: -($section_pad_v_mobile * 2.25);
+  padding-right: 0;
+  padding-left: 0;
+  z-index: 0;
+
+  @include mobile-up {
+    margin-top: -($section_pad_v_desktop * 2.25);
+  }
 }
 
 .ViewerFrame {
@@ -32,6 +51,7 @@ $viewer_bg_rad_grad: radial-gradient(
   position: absolute;
   height: 100%;
   width: 100%;
+  z-index: 1;
   left: 0;
   top: 0;
 }

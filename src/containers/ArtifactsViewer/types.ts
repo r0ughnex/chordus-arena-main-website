@@ -1,4 +1,23 @@
+import { CarouselProviderProps } from 'pure-react-carousel';
 import { MutableRefObject } from 'react';
+
+export enum ArtifactType {
+  Axe = 'axe',
+  Claw = 'claw',
+  Dagger = 'dagger',
+  Hammer = 'hammer',
+  Shield = 'shield',
+  Sickle = 'sickle',
+}
+
+export enum ElementType {
+  Neutral = 'neutral',
+  Poison = 'poison',
+  Fire = 'fire',
+  Frost = 'frost',
+  Light = 'light',
+  Darkness = 'darkness',
+}
 
 export type ApiAnimUid = string;
 export type ApiAnimName = string;
@@ -12,6 +31,10 @@ export interface ClientOptions {
 export interface ViewerClient {
   init: (modelId: string, options: ClientOptions) => void;
 }
+
+export type ViewerData = {
+  [x in ArtifactType]: { [y in ElementType]: { id: string } };
+};
 
 export interface ViewerApi {
   stop: (callback?: () => void) => void;
@@ -38,3 +61,8 @@ export interface UseArtifactsViewerResponse {
   viewerApi: ViewerApi | null;
   isViewerReady: boolean;
 }
+
+export type CarouselOptions = Omit<
+  CarouselProviderProps,
+  'children' | 'totalSlides'
+> & { visibleSlides: number };

@@ -1,25 +1,41 @@
-import Container from 'components/Container';
-import Section, {
-  SectionText,
-  SectionTitle,
-  SectionType,
-} from 'components/Section';
-import { motion } from 'framer-motion';
-import { memo, useEffect, useRef, useState } from 'react';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
+import Container from 'components/Container';
+import Section, { SectionText, SectionTitle } from 'components/Section';
+import { motion } from 'framer-motion';
+import { CarouselProvider } from 'pure-react-carousel';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+
+import ArtifactsCarousel from './ArtifactsCarousel';
 import styles from './ArtifactsViewer.module.scss';
-import { artifactsShield } from './data';
+import { carouselData, carouselOptions, viewerData } from './data';
 import { useArtifactsViewer } from './hooks';
+import { ElementType } from './types';
 
 export interface ArtifactsViewerProps {
   delay?: number;
 }
 
 function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
-  const intervalIdRef = useRef<number | null>(null);
   const frameRef = useRef<null | HTMLIFrameElement>(null);
-  const [modelId, setModelId] = useState(artifactsShield[0]);
-  const { isViewerReady } = useArtifactsViewer({ modelId, frameRef });
+
+  const initialSlide = parseInt(
+    `${carouselData.length / carouselOptions.visibleSlides}`,
+  );
+
+  const [elementType] = useState(ElementType.Darkness);
+  const [artifactType, setArtifactType] = useState(
+    carouselData[initialSlide + 1].type,
+  );
+
+  const [modelId, setModelId] = useState(
+    viewerData[artifactType][elementType].id,
+  );
+
+  const { isViewerReady } = useArtifactsViewer({
+    modelId,
+    frameRef,
+  });
 
   const motionAnimPropsContent = {
     animate: { opacity: 1, y: 0 },
@@ -38,38 +54,24 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
     },
   };
 
-  /**
-   * @TODO: Effect to test if the artifacts,
-   * can be changed by user selection or not.
-   * To be removed once the carousel is built!
-   */
-  useEffect(() => {
-    const testIntervalDelay = 15000;
-    const clearPrevInterval = () => {
-      const id = intervalIdRef.current;
+  const motionAnimPropsCarousel = {
+    ...motionAnimPropsContent,
+    animate: { opacity: 1 },
+    initial: { opacity: 0 },
+  };
 
-      if (id) {
-        clearInterval(id);
-        intervalIdRef.current = null;
-      }
-    };
-
-    clearPrevInterval();
-    let currentIndex = 0;
-    intervalIdRef.current = window.setInterval(() => {
-      currentIndex += 1;
-
-      if (currentIndex >= artifactsShield.length) {
-        currentIndex = 0;
-      }
-
-      setModelId(artifactsShield[currentIndex]);
-    }, testIntervalDelay);
+  const onSlideChange = useCallback((currSlide: number) => {
+    const { type } = carouselData[currSlide + 1];
+    setArtifactType(type);
   }, []);
+
+  useEffect(() => {
+    setModelId(viewerData[artifactType][elementType].id);
+  }, [elementType, artifactType]);
 
   return (
     <>
-      <Section className={styles.ViewerSectionTop} type={SectionType.Medm}>
+      <Section className={styles.ViewerSectionContent}>
         <Container>
           <motion.div {...motionAnimPropsContent}>
             <SectionTitle>Ancient artifacts</SectionTitle>
@@ -84,7 +86,7 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
         </Container>
       </Section>
 
-      <Section className={styles.ViewerSectionBttm} type={SectionType.Medm}>
+      <Section className={styles.ViewerSectionFrame}>
         <motion.iframe
           {...motionAnimPropsFrame}
           xr-spatial-tracking="true"
@@ -97,6 +99,18 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
           web-share="true"
           ref={frameRef}
         />
+      </Section>
+
+      <Section className={styles.ViewerSectionCarousel}>
+        <CarouselProvider
+          {...carouselOptions}
+          currentSlide={initialSlide}
+          totalSlides={carouselData.length}
+        >
+          <motion.div {...motionAnimPropsCarousel}>
+            <ArtifactsCarousel onChange={onSlideChange} />
+          </motion.div>
+        </CarouselProvider>
       </Section>
     </>
   );

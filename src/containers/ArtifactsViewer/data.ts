@@ -1,3 +1,14 @@
+import { v4 as uuidv4 } from 'uuid';
+
+import {
+  ArtifactType,
+  CarouselOptions,
+  ElementType,
+  ViewerData,
+} from './types';
+
+const imgPath = `${process.env.PUBLIC_URL}/images/artifact_thumbs`;
+
 /**
  * The viewer options and default values were taken from:
  * https://sketchfab.com/developers/viewer/initialization
@@ -5,7 +16,11 @@
 export const viewerOptions = {
   dnt: 1,
   camera: 0,
-  autospin: 0,
+  /**
+   * @TODO: 'autospin' field should be set to '0' once,
+   * 'Rotation' animation is added to all the artifacts.
+   */
+  autospin: 1,
   autostart: 0,
   dof_circle: 0,
   scrollwheel: 0,
@@ -41,47 +56,77 @@ export const viewerConfig = {
   initLoadDelay: 1250,
 };
 
-export enum ArtifactType {
-  Shield = 'shield',
-}
-
-export enum ElementType {
-  Neutral = 'neutral',
-  Poison = 'poison',
-  Fire = 'fire',
-  Frost = 'frost',
-  Light = 'light',
-  Darkness = 'darkness',
-}
-
 export const viewerData = {
-  [ArtifactType.Shield]: {
-    [ElementType.Neutral]: {
-      id: 'a8a42d153b284543824efdd45ad05056',
-    },
-
-    [ElementType.Poison]: {
-      id: '06c3ff2c4f3344c284490cb4f0ba90ac',
-    },
-
-    [ElementType.Fire]: {
-      id: '8e33790459984f6498a6e82eb855e289',
-    },
-
-    [ElementType.Frost]: {
-      id: 'f133a8619e66473d9d18577dfb46cec0',
-    },
-
-    [ElementType.Light]: {
-      id: 'e7e47e56bff9490ab6ac27ecb9c00aa7',
-    },
-
-    [ElementType.Darkness]: {
-      id: 'bc4bba1a9c6343128608a013114b8aeb',
-    },
+  [ArtifactType.Hammer]: {
+    [ElementType.Darkness]: { id: 'd557f1b1f57748d28afc2adbe7cc077e' },
   },
+
+  [ArtifactType.Shield]: {
+    [ElementType.Darkness]: { id: 'bc4bba1a9c6343128608a013114b8aeb' },
+  },
+
+  [ArtifactType.Sickle]: {
+    [ElementType.Darkness]: { id: '699eb5837d28468abb6d4de3ba9a0b35' },
+  },
+
+  [ArtifactType.Axe]: {
+    [ElementType.Darkness]: { id: '0a513467cff243838ed0fd378afbc434' },
+  },
+
+  [ArtifactType.Claw]: {
+    [ElementType.Darkness]: { id: 'db0a1b529a8f429f8ccb22b671e5dd81' },
+  },
+
+  [ArtifactType.Dagger]: {
+    [ElementType.Darkness]: { id: '70ad2af8b40848ff865d5e6ab130a507' },
+  },
+} as ViewerData;
+
+/**
+ * The below carousel options, props and default values were taken from:
+ * https://github.com/express-labs/pure-react-carousel#carouselprovider-
+ */
+export const carouselOptions: CarouselOptions = {
+  naturalSlideHeight: 514,
+  naturalSlideWidth: 405,
+  visibleSlides: 3,
 };
 
-export const artifactsShield = Object.values(
-  viewerData[ArtifactType.Shield],
-).map(({ id }) => id);
+/**
+ * NOTE: Just repeating the array of carousel data 'N' no. of times,
+ * so as to create the illusion of an infinitely scrolling carousel.
+ */
+export const carouselData = ((repeat = 1) =>
+  Array.from({ length: repeat }, () => [
+    {
+      type: ArtifactType.Hammer,
+      picture: `${imgPath}/hammer.png`,
+    },
+
+    {
+      type: ArtifactType.Shield,
+      picture: `${imgPath}/shield.png`,
+    },
+
+    {
+      type: ArtifactType.Sickle,
+      picture: `${imgPath}/sickle.png`,
+    },
+
+    {
+      type: ArtifactType.Axe,
+      picture: `${imgPath}/axe.png`,
+    },
+
+    {
+      type: ArtifactType.Claw,
+      picture: `${imgPath}/claw.png`,
+    },
+
+    {
+      type: ArtifactType.Dagger,
+      picture: `${imgPath}/dagger.png`,
+    },
+  ]).flat())(carouselOptions.visibleSlides * 2).map(data => {
+  return { ...data, id: uuidv4() };
+});
