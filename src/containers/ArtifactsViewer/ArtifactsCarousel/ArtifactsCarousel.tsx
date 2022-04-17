@@ -47,7 +47,11 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
   return (
     <Slider className={classNames(styles.Slider, className)}>
       {carouselData.map(({ id, picture }, index) => {
+        const isSlideSelected = index === currSlide + 1;
         const backgroundImage = `url(${picture})`;
+        const slideOverlayClass = isSlideSelected
+          ? styles.SlideOverlaySelected
+          : styles.SlideOverlayDefault;
 
         return (
           <Slide
@@ -56,7 +60,7 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
             className={styles.SlideOuter}
             innerClassName={styles.SlideInner}
           >
-            <div className={styles.SlideOverlay} />
+            <div className={slideOverlayClass} />
             <div className={styles.SlideBgImage} style={{ backgroundImage }} />
           </Slide>
         );

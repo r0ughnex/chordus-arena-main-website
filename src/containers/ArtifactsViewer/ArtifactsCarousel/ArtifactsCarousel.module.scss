@@ -1,17 +1,30 @@
 @import 'styles/mixins';
 @import 'styles/variables';
 
+$acar_slider_pad_h: 25%;
+$acar_slide_border_w: 2px;
+$acar_slide_border_r: 15px;
+$acar_slide_bgcolor: #494949;
+
+$acar_ovrly_bgcolor: #2d2d2d;
+$acar_ovrly_opcty_default: 0.35;
+$acar_ovrly_opcty_selected: 0.18;
+
 .Slider {
-  padding-left: 25%;
-  padding-right: 25%;
+  padding-left: $acar_slider_pad_h;
+  padding-right: $acar_slider_pad_h;
 }
 
 .SlideInner {
   left: 6%;
   overflow: hidden;
-  border-radius: 15px;
   width: calc(100% - 12%);
-  background-color: #494949;
+  background-color: $acar_slide_bgcolor;
+  border-radius: $acar_slide_border_r / 2;
+
+  @include mobile-up {
+    border-radius: $acar_slide_border_r / 1;
+  }
 }
 
 .SlideBgImage,
@@ -22,12 +35,38 @@
 
 .SlideBgImage {
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .SlideOverlay {
-  opacity: 0.35;
+  @include transitions(border-color, background-color);
+  border-radius: $acar_slide_border_r / 2;
+  border-width: $acar_slide_border_w;
+  border-style: solid;
   position: absolute;
-  background-color: #2d2d2d;
+
+  @include mobile-up {
+    border-radius: $acar_slide_border_r / 1;
+  }
+}
+
+.SlideOverlayDefault {
+  @extend .SlideOverlay;
+  border-color: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba($acar_ovrly_bgcolor, $acar_ovrly_opcty_default) 0%,
+    rgba($acar_ovrly_bgcolor, $acar_ovrly_opcty_default) 100%
+  );
+}
+
+.SlideOverlaySelected {
+  @extend .SlideOverlay;
+  border-color: $color_primary;
+  background: linear-gradient(
+    180deg,
+    rgba($color_primary, $acar_ovrly_opcty_selected) 0%,
+    rgba($color_bg_dark, $acar_ovrly_opcty_selected) 100%
+  );
 }

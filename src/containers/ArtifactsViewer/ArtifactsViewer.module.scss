@@ -27,22 +27,22 @@ $viewer_bg_rad_grad: radial-gradient(
   @extend .ViewerSection;
   min-height: $viewer_height_min;
   background: $viewer_bg_rad_grad;
-  margin-top: -($section_pad_v_mobile * 1.75);
+  margin-top: -($section_pad_v_mobile * 1);
 
   @include mobile-up {
-    margin-top: -($section_pad_v_desktop * 1.75);
+    margin-top: -($section_pad_v_desktop * 1);
   }
 }
 
 .ViewerSectionCarousel {
   @extend .ViewerSection;
-  margin-top: -($section_pad_v_mobile * 2.25);
+  margin-top: -($section_pad_v_mobile * 2);
   padding-right: 0;
   padding-left: 0;
   z-index: 0;
 
   @include mobile-up {
-    margin-top: -($section_pad_v_desktop * 2.25);
+    margin-top: -($section_pad_v_desktop * 2);
   }
 }
 
