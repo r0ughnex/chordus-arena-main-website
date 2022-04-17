@@ -27,6 +27,10 @@ $viewer_bg_rad_grad: radial-gradient(
   @extend .ViewerSection;
   min-height: $viewer_height_min;
   background: $viewer_bg_rad_grad;
+}
+
+.ViewerSectionFrame,
+.ViewerLoader {
   margin-top: -($section_pad_v_mobile * 1);
 
   @include mobile-up {
@@ -46,12 +50,20 @@ $viewer_bg_rad_grad: radial-gradient(
   }
 }
 
+.ViewerFrame,
+.ViewerLoader {
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+
 .ViewerFrame {
   pointer-events: none;
   position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 1;
-  left: 0;
-  top: 0;
+}
+
+.ViewerLoader {
+  @include transform-center;
 }

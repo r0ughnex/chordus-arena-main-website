@@ -25,6 +25,13 @@
   }
 }
 
+@mixin transform-center {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
 /* Mixin to create tranitions. */
 @mixin transitions($props...) {
   // create empty list

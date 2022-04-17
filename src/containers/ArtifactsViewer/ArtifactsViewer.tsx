@@ -7,6 +7,7 @@ import { CarouselProvider } from 'pure-react-carousel';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import ArtifactsCarousel from './ArtifactsCarousel';
+import ArtifactsLoading from './ArtifactsLoading';
 import styles from './ArtifactsViewer.module.scss';
 import { carouselData, carouselOptions, viewerData } from './data';
 import { useArtifactsViewer } from './hooks';
@@ -37,9 +38,9 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
     frameRef,
   });
 
-  const motionAnimPropsContent = {
-    animate: { opacity: 1, y: 0 },
-    initial: { opacity: 0, y: 15 },
+  const motionAnimPropsWrapper = {
+    animate: { opacity: 1 },
+    initial: { opacity: 0 },
     transition: {
       duration: 0.5,
       delay,
@@ -47,17 +48,20 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
   };
 
   const motionAnimPropsFrame = {
-    animate: { opacity: isViewerReady ? 1 : 0 },
-    initial: { opacity: 0 },
+    ...motionAnimPropsWrapper,
+    animate: {
+      opacity: isViewerReady ? 1 : 0,
+    },
     transition: {
       duration: 0.5,
     },
   };
 
-  const motionAnimPropsCarousel = {
-    ...motionAnimPropsContent,
-    animate: { opacity: 1 },
-    initial: { opacity: 0 },
+  const motionAnimPropsLoader = {
+    ...motionAnimPropsFrame,
+    animate: {
+      opacity: isViewerReady ? 0 : 1,
+    },
   };
 
   const onSlideChange = useCallback((currSlide: number) => {
@@ -70,19 +74,17 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
   }, [elementType, artifactType]);
 
   return (
-    <>
+    <motion.div {...motionAnimPropsWrapper}>
       <Section className={styles.ViewerSectionContent}>
         <Container>
-          <motion.div {...motionAnimPropsContent}>
-            <SectionTitle>Ancient artifacts</SectionTitle>
+          <SectionTitle>Ancient artifacts</SectionTitle>
 
-            <SectionText>
-              Competition rules allow only melee weapons, made stronger by using
-              one of the six special elements, gathered from the farthest parts
-              of the universe and brought to the arena where they can be forged
-              by forge masters into Ancient Artifacts.
-            </SectionText>
-          </motion.div>
+          <SectionText>
+            Competition rules allow only melee weapons, made stronger by using
+            one of the six special elements, gathered from the farthest parts of
+            the universe and brought to the arena where they can be forged by
+            forge masters into Ancient Artifacts.
+          </SectionText>
         </Container>
       </Section>
 
@@ -99,6 +101,10 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
           web-share="true"
           ref={frameRef}
         />
+
+        <motion.div {...motionAnimPropsLoader}>
+          <ArtifactsLoading className={styles.ViewerLoader} />
+        </motion.div>
       </Section>
 
       <Section className={styles.ViewerSectionCarousel}>
@@ -107,12 +113,10 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
           currentSlide={initialSlide}
           totalSlides={carouselData.length}
         >
-          <motion.div {...motionAnimPropsCarousel}>
-            <ArtifactsCarousel onChange={onSlideChange} />
-          </motion.div>
+          <ArtifactsCarousel onChange={onSlideChange} />
         </CarouselProvider>
       </Section>
-    </>
+    </motion.div>
   );
 }
 
