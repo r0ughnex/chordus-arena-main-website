@@ -15,3 +15,9 @@ export enum Color {
   BgMedm = '#191919',
   BgLight = '#262626',
 }
+
+export enum Breakpoint {
+  DesktopXtraLarge = 2560,
+  Desktop = 1920,
+  Mobile = 1020,
+}

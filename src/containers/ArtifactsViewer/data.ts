@@ -87,9 +87,15 @@ export const viewerData = {
  * https://github.com/express-labs/pure-react-carousel#carouselprovider-
  */
 export const carouselOptions: CarouselOptions = {
-  naturalSlideHeight: 514,
   naturalSlideWidth: 405,
-  visibleSlides: 3,
+  naturalSlideHeight: 514,
+  visibleSlidesDefault: 3,
+
+  // Does not offset slide index.
+  visibleSlidesMobile: 1,
+
+  // Offsets slide index by '1'.
+  visibleSlidesDesktop: 3,
 };
 
 /**
@@ -127,6 +133,6 @@ export const carouselData = ((repeat = 1) =>
       type: ArtifactType.Dagger,
       picture: `${imgPath}/dagger.png`,
     },
-  ]).flat())(carouselOptions.visibleSlides * 2).map(data => {
+  ]).flat())(carouselOptions.visibleSlidesDefault * 2).map(data => {
   return { ...data, id: uuidv4() };
 });

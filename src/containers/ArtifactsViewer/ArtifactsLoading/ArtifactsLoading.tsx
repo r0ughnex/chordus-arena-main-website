@@ -14,7 +14,7 @@ const ArtifactsLoading = ({ className }: ArtifactsLoadingProps) => {
         <span className={styles.LoadingSpan} key={key} />
       ))}
 
-      <h2 className={styles.LoadingText}>Loading..</h2>
+      <h4 className={styles.LoadingText}>Loading...</h4>
     </div>
   );
 };

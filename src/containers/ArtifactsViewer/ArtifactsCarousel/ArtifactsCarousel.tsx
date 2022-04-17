@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useIsMediaMobileUp } from 'hooks/useMediaQuery';
 import usePrevious from 'hooks/usePrevious';
 import { CarouselContext, Slide, Slider } from 'pure-react-carousel';
 import { memo, useContext, useEffect, useState } from 'react';
@@ -13,6 +14,7 @@ export interface ArtifactsCarouselProps {
 
 const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
   const carouselContext = useContext(CarouselContext);
+  const isMediaMobileUp = useIsMediaMobileUp();
   const [currSlide, setCurrSlide] = useState(
     carouselContext.state.currentSlide,
   );
@@ -47,7 +49,7 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
   return (
     <Slider className={classNames(styles.Slider, className)}>
       {carouselData.map(({ id, picture }, index) => {
-        const isSlideSelected = index === currSlide + 1;
+        const isSlideSelected = index === currSlide + (isMediaMobileUp ? 1 : 0);
         const backgroundImage = `url(${picture})`;
         const slideOverlayClass = isSlideSelected
           ? styles.SlideOverlaySelected

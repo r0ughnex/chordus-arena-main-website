@@ -65,4 +65,8 @@ export interface UseArtifactsViewerResponse {
 export type CarouselOptions = Omit<
   CarouselProviderProps,
   'children' | 'totalSlides'
-> & { visibleSlides: number };
+> & {
+  visibleSlidesMobile: number;
+  visibleSlidesDesktop: number;
+  visibleSlidesDefault: number;
+};

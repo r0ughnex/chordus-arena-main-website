@@ -3,6 +3,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import Container from 'components/Container';
 import Section, { SectionText, SectionTitle } from 'components/Section';
 import { motion } from 'framer-motion';
+import { useIsMediaMobileUp } from 'hooks/useMediaQuery';
 import { CarouselProvider } from 'pure-react-carousel';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -19,14 +20,27 @@ export interface ArtifactsViewerProps {
 
 function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
   const frameRef = useRef<null | HTMLIFrameElement>(null);
+  const isMediaMobileUp = useIsMediaMobileUp();
+  const {
+    visibleSlidesMobile,
+    visibleSlidesDesktop,
+    visibleSlidesDefault,
+    ...providerOptions
+  } = carouselOptions;
 
-  const initialSlide = parseInt(
-    `${carouselData.length / carouselOptions.visibleSlides}`,
+  const [visibleSlides, setVisibleSlidies] = useState(
+    isMediaMobileUp ? visibleSlidesDesktop : visibleSlidesMobile,
+  );
+
+  // 'currentSlide' might need to be offset by '1'.
+  const [currentSlide, setCurrentSlide] = useState(
+    parseInt(`${carouselData.length / visibleSlidesDefault}`) +
+      (isMediaMobileUp ? 0 : 1),
   );
 
   const [elementType] = useState(ElementType.Darkness);
   const [artifactType, setArtifactType] = useState(
-    carouselData[initialSlide + 1].type,
+    carouselData[currentSlide + (isMediaMobileUp ? 1 : 0)].type,
   );
 
   const [modelId, setModelId] = useState(
@@ -65,9 +79,20 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
   };
 
   const onSlideChange = useCallback((currSlide: number) => {
-    const { type } = carouselData[currSlide + 1];
-    setArtifactType(type);
+    setCurrentSlide(currSlide);
   }, []);
+
+  useEffect(() => {
+    setVisibleSlidies(
+      isMediaMobileUp ? visibleSlidesDesktop : visibleSlidesMobile,
+    );
+  }, [isMediaMobileUp, visibleSlidesDesktop, visibleSlidesMobile]);
+
+  useEffect(() => {
+    setArtifactType(
+      carouselData[currentSlide + (isMediaMobileUp ? 1 : 0)].type,
+    );
+  }, [isMediaMobileUp, currentSlide]);
 
   useEffect(() => {
     setModelId(viewerData[artifactType][elementType].id);
@@ -109,8 +134,9 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
 
       <Section className={styles.ViewerSectionCarousel}>
         <CarouselProvider
-          {...carouselOptions}
-          currentSlide={initialSlide}
+          {...providerOptions}
+          currentSlide={currentSlide}
+          visibleSlides={visibleSlides}
           totalSlides={carouselData.length}
         >
           <ArtifactsCarousel onChange={onSlideChange} />
