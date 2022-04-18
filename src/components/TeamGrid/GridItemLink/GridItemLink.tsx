@@ -7,13 +7,13 @@ export interface GridItemLinkProps {
   Icon: FC<SVGProps<SVGSVGElement>>;
   className?: string;
   href?: string;
-  key: string;
+  id: string;
 }
 
-function GridItemLink({ Icon, className, href, key }: GridItemLinkProps) {
+function GridItemLink({ Icon, className, href, id }: GridItemLinkProps) {
   return (
     <a
-      key={key}
+      key={id}
       href={href}
       target="_blank"
       rel="noopener noreferrer"

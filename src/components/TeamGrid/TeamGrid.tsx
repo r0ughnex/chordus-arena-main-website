@@ -79,7 +79,8 @@ function TeamGrid({ className, items }: TeamGridProps) {
                 <div className={styles.GridItemLinks}>
                   {gridItemLinks.map(({ href, Icon }, index) => {
                     const key = `grid-item-link_${href}_${index}`;
-                    return <GridItemLink key={key} href={href} Icon={Icon} />;
+                    const gridItemLinkProps = { id, href, Icon };
+                    return <GridItemLink {...gridItemLinkProps} key={key} />;
                   })}
                 </div>
               </div>

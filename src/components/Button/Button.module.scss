@@ -59,7 +59,8 @@ $btn_disabled_opacity: 0.5;
   @extend .Button;
   border-color: $color_primary;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: $color_primary_dark;
     background-color: $color_primary_dark;
   }
@@ -69,7 +70,8 @@ $btn_disabled_opacity: 0.5;
   @extend .Button;
   border-color: $color_secondary;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: $color_secondary_dark;
     background-color: $color_secondary_dark;
   }

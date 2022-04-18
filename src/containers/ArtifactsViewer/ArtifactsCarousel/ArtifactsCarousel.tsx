@@ -47,7 +47,7 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
   }, [prevSlide, currSlide, onChange]);
 
   return (
-    <Slider className={classNames(styles.Slider, className)}>
+    <Slider tabIndex={-1} className={classNames(styles.Slider, className)}>
       {carouselData.map(({ id, picture }, index) => {
         const isSlideSelected = index === currSlide + (isMediaMobileUp ? 1 : 0);
         const backgroundImage = `url(${picture})`;
@@ -59,6 +59,7 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
           <Slide
             key={id}
             index={index}
+            tabIndex={-1}
             className={styles.SlideOuter}
             innerClassName={styles.SlideInner}
           >

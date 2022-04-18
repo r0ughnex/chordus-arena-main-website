@@ -18,7 +18,8 @@ $link_opcty_disabled: 0.35;
     fill: $color_font_medm;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     path {
       fill: $color_font_white;
     }
