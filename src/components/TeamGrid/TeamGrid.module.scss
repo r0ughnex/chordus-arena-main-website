@@ -9,7 +9,6 @@ $team_grid_icon_size_sm: 35px;
 $team_grid_icon_size_lg: 40px;
 $team_grid_title_margin: 1.12em;
 
-$team_link_margin: 0.75em;
 $team_item_width_min: 290px;
 $team_item_grid_gap_sm: 26px;
 $team_item_grid_gap_lg: 30px;
@@ -102,52 +101,5 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
         display: none !important;
       }
     }
-  }
-
-  .GridItemLink {
-    @include transitions(opacity);
-    margin-right: $team_link_margin;
-    height: $font_size_s_mobile;
-    width: $font_size_s_mobile;
-    display: inline-block;
-    vertical-align: top;
-
-    path {
-      @include transitions(fill);
-      fill: $color_font_medm;
-    }
-
-    &:hover {
-      path {
-        fill: $color_font_white;
-      }
-    }
-
-    &:last-of-type {
-      margin-right: 0 !important;
-    }
-
-    @include mobile-up {
-      width: $font_size_s_desktop;
-      height: $font_size_s_desktop;
-    }
-  }
-
-  .GridItemLinkEnabled {
-    @extend .GridItemLink;
-    opacity: 1;
-  }
-
-  .GridItemLinkDisabled {
-    @extend .GridItemLink;
-    pointer-events: none;
-    opacity: 0.35;
-  }
-
-  .GridItemIcon {
-    @include transitions(opacity);
-    display: block;
-    height: auto;
-    width: 100%;
   }
 }

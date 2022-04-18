@@ -1,0 +1,53 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$link_margin: 0.75em;
+$link_opcty_default: 1;
+$link_opcty_disabled: 0.35;
+
+.GridItemLink {
+  @include transitions(opacity);
+  margin-right: $link_margin;
+  height: $font_size_s_mobile;
+  width: $font_size_s_mobile;
+  display: inline-block;
+  vertical-align: top;
+
+  path {
+    @include transitions(fill);
+    fill: $color_font_medm;
+  }
+
+  &:hover {
+    path {
+      fill: $color_font_white;
+    }
+  }
+
+  &:last-of-type {
+    margin-right: 0 !important;
+  }
+
+  @include mobile-up {
+    width: $font_size_s_desktop;
+    height: $font_size_s_desktop;
+  }
+}
+
+.GridItemLinkEnabled {
+  @extend .GridItemLink;
+  opacity: $link_opcty_default;
+}
+
+.GridItemLinkDisabled {
+  @extend .GridItemLink;
+  pointer-events: none;
+  opacity: $link_opcty_disabled;
+}
+
+.GridItemIcon {
+  @include transitions(opacity);
+  display: block;
+  height: auto;
+  width: 100%;
+}
