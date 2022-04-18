@@ -19,5 +19,6 @@ export enum Color {
 export enum Breakpoint {
   DesktopXtraLarge = 2560,
   Desktop = 1920,
+  Tablet = 1360,
   Mobile = 1020,
 }

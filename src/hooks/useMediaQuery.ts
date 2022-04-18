@@ -54,4 +54,8 @@ export function useIsMediaMobileUp() {
   return useMediaQuery(`(min-width: ${Breakpoint.Mobile}px)`);
 }
 
+export function useIsMediaTabletUp() {
+  return useMediaQuery(`(min-width: ${Breakpoint.Tablet}px)`);
+}
+
 export default useMediaQuery;
