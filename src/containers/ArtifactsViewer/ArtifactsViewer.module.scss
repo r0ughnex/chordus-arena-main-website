@@ -14,7 +14,13 @@ $viewer_bg_rad_grad: radial-gradient(
   rgba($color_bg_grad_grey, 0.75) 42%
 );
 
-.ViewerSection {
+$art_selector_w_mobile: 100%;
+$art_selector_w_desktop: 50%;
+$art_selector_w_desktop_max: 480px;
+$art_selector_w_desktop_lg_max: 520px;
+
+.ViewerSection,
+.ViewerSectionWrapper {
   position: relative;
 }
 
@@ -47,6 +53,40 @@ $viewer_bg_rad_grad: radial-gradient(
 
   @include mobile-up {
     margin-top: -($section_pad_v_desktop * 2);
+  }
+}
+
+.ViewerSectionElements {
+  display: block;
+
+  @include mobile-up {
+    display: flex;
+    justify-content: center;
+    grid-column-gap: $section_pad_h_desktop;
+  }
+
+  @include tablet-up {
+    justify-content: space-between;
+    top: $section_pad_v_desktop * 2;
+    position: absolute;
+    width: 100%;
+  }
+
+  .ArtifactRankSelector,
+  .ArtifactElemSelector {
+    flex-basis: $art_selector_w_mobile;
+
+    @include mobile-up {
+      flex-basis: $art_selector_w_desktop;
+    }
+
+    @include tablet-up {
+      max-width: $art_selector_w_desktop_max;
+    }
+
+    @include desktop-lg-up {
+      max-width: $art_selector_w_desktop_lg_max;
+    }
   }
 }
 

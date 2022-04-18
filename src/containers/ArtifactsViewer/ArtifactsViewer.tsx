@@ -2,7 +2,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import Container from 'components/Container';
 import Section, { SectionText, SectionTitle } from 'components/Section';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useIsMediaMobileUp } from 'hooks/useMediaQuery';
 import { CarouselProvider } from 'pure-react-carousel';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
@@ -11,8 +11,9 @@ import ArtifactsCarousel from './ArtifactsCarousel';
 import ArtifactsLoading from './ArtifactsLoading';
 import styles from './ArtifactsViewer.module.scss';
 import { carouselData, carouselOptions, viewerData } from './data';
+import ElementsSelector from './ElementsSelector';
 import { useArtifactsViewer } from './hooks';
-import { ElementType } from './types';
+import { ArtifactType, ElementType } from './types';
 
 export interface ArtifactsViewerProps {
   delay?: number;
@@ -38,8 +39,11 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
       (isMediaMobileUp ? 0 : 1),
   );
 
-  const [elementType] = useState(ElementType.Darkness);
-  const [artifactType, setArtifactType] = useState(
+  const [elementType, setElementType] = useState<ElementType>(
+    ElementType.Darkness,
+  );
+
+  const [artifactType, setArtifactType] = useState<ArtifactType>(
     carouselData[currentSlide + (isMediaMobileUp ? 1 : 0)].type,
   );
 
@@ -73,13 +77,17 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
 
   const motionAnimPropsLoader = {
     ...motionAnimPropsFrame,
-    animate: {
-      opacity: isViewerReady ? 0 : 1,
-    },
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
   };
 
   const onSlideChange = useCallback((currSlide: number) => {
     setCurrentSlide(currSlide);
+  }, []);
+
+  const onElementChange = useCallback((elemType: ElementType) => {
+    setElementType(elemType);
   }, []);
 
   useEffect(() => {
@@ -113,35 +121,52 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
         </Container>
       </Section>
 
-      <Section className={styles.ViewerSectionFrame}>
-        <motion.iframe
-          {...motionAnimPropsFrame}
-          xr-spatial-tracking="true"
-          execution-while-not-rendered="true"
-          execution-while-out-of-viewport="true"
-          allow="autoplay; xr-spatial-tracking"
-          title="Chordus Arena Artifacts Viewer"
-          sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
-          className={styles.ViewerFrame}
-          web-share="true"
-          ref={frameRef}
-        />
+      <div className={styles.ViewerSectionWrapper}>
+        <Section className={styles.ViewerSectionFrame}>
+          <motion.iframe
+            {...motionAnimPropsFrame}
+            xr-spatial-tracking="true"
+            execution-while-not-rendered="true"
+            execution-while-out-of-viewport="true"
+            allow="autoplay; xr-spatial-tracking"
+            title="Chordus Arena Artifacts Viewer"
+            sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
+            className={styles.ViewerFrame}
+            web-share="true"
+            tabIndex={-1}
+            ref={frameRef}
+          />
 
-        <motion.div {...motionAnimPropsLoader}>
-          <ArtifactsLoading className={styles.ViewerLoader} />
-        </motion.div>
-      </Section>
+          <AnimatePresence>
+            {!isViewerReady && (
+              <motion.div {...motionAnimPropsLoader} key="loader">
+                <ArtifactsLoading className={styles.ViewerLoader} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Section>
 
-      <Section className={styles.ViewerSectionCarousel}>
-        <CarouselProvider
-          {...providerOptions}
-          currentSlide={currentSlide}
-          visibleSlides={visibleSlides}
-          totalSlides={carouselData.length}
-        >
-          <ArtifactsCarousel onChange={onSlideChange} />
-        </CarouselProvider>
-      </Section>
+        <Section className={styles.ViewerSectionCarousel}>
+          <CarouselProvider
+            {...providerOptions}
+            currentSlide={currentSlide}
+            visibleSlides={visibleSlides}
+            totalSlides={carouselData.length}
+          >
+            <ArtifactsCarousel onChange={onSlideChange} />
+          </CarouselProvider>
+        </Section>
+
+        <Section className={styles.ViewerSectionElements}>
+          <div className={styles.ArtifactRankSelector} />
+
+          <ElementsSelector
+            className={styles.ArtifactElemSelector}
+            selectedElement={elementType}
+            onChange={onElementChange}
+          />
+        </Section>
+      </div>
     </motion.div>
   );
 }
