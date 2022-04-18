@@ -1,0 +1,133 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$elements_count: 6;
+$elements_margin: 1.65em;
+$element_border_w: 2px;
+$element_margin: 5%;
+$element_size: (
+  (100% - ($element_margin * ($elements_count - 1))) / $elements_count
+);
+
+$element_color_fire: #841815;
+$element_color_frost: #366b9f;
+$element_color_light: #5d5b5a;
+$element_color_poison: #1f5d23;
+$element_color_neutral: #5b5f62;
+$element_color_darkness: #3e2c59;
+
+.ElementsSelector {
+  text-align: left;
+  position: relative;
+}
+
+.SelectorSub,
+.SelectorTitle {
+  margin-top: 0;
+}
+
+.SelectorSub {
+  color: $color_secondary;
+  text-transform: uppercase;
+}
+
+.SelectorElements {
+  margin: $elements_margin 0;
+}
+
+.SelectorElement {
+  @include transitions(border-color, background-color);
+  border-color: $color_font_medm;
+  margin-right: $element_margin;
+  color: $color_font_medm;
+  width: $element_size;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 2px;
+  padding: 0;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color_font_medm;
+  }
+
+  &:last-child {
+    margin-right: 0 !important;
+  }
+}
+
+.SelectorElementSelected {
+  background-color: currentColor;
+}
+
+.SelectorElementNeutral {
+  @extend .SelectorElement;
+  color: $element_color_neutral;
+  border-color: $element_color_neutral;
+
+  &:hover,
+  &:focus {
+    background-color: $element_color_neutral;
+  }
+}
+
+.SelectorElementPoison {
+  @extend .SelectorElement;
+  color: $element_color_poison;
+  border-color: $element_color_poison;
+
+  &:hover,
+  &:focus {
+    background-color: $element_color_poison;
+  }
+}
+
+.SelectorElementFire {
+  @extend .SelectorElement;
+  color: $element_color_fire;
+  border-color: $element_color_fire;
+
+  &:hover,
+  &:focus {
+    background-color: $element_color_fire;
+  }
+}
+
+.SelectorElementFrost {
+  @extend .SelectorElement;
+  color: $element_color_frost;
+  border-color: $element_color_frost;
+
+  &:hover,
+  &:focus {
+    background-color: $element_color_frost;
+  }
+}
+
+.SelectorElementLight {
+  @extend .SelectorElement;
+  color: $element_color_light;
+  border-color: $element_color_light;
+
+  &:hover,
+  &:focus {
+    background-color: $element_color_light;
+  }
+}
+
+.SelectorElementDarkness {
+  @extend .SelectorElement;
+  color: $element_color_darkness;
+  border-color: $element_color_darkness;
+
+  &:hover,
+  &:focus {
+    background-color: $element_color_darkness;
+  }
+}
