@@ -162,6 +162,7 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
 
           <ElementsSelector
             className={styles.ArtifactElemSelector}
+            selectedArtifact={artifactType}
             selectedElement={elementType}
             onChange={onElementChange}
           />

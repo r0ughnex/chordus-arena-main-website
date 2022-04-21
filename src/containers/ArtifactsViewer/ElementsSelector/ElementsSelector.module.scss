@@ -37,6 +37,8 @@ $element_color_darkness: #3e2c59;
 
 .SelectorElement {
   @include transitions(border-color, background-color);
+  @include background-image;
+
   border-color: $color_font_medm;
   margin-right: $element_margin;
   color: $color_font_medm;
