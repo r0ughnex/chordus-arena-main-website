@@ -38,6 +38,14 @@
   top: 50%;
 }
 
+@mixin background-image() {
+  background-position: center top;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-image: none;
+  background-size: cover;
+}
+
 /* Mixin to create tranitions. */
 @mixin transitions($props...) {
   // create empty list

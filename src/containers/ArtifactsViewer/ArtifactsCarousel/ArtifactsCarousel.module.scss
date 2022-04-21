@@ -34,9 +34,7 @@ $acar_ovrly_opcty_selected: 0.18;
 }
 
 .SlideBgImage {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  @include background-image;
 }
 
 .SlideOverlay {
