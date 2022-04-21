@@ -63,7 +63,7 @@ export const viewerData = {
     [ElementType.Fire]: { id: '7921620f1a774766b33b8f54011b99a2' },
     [ElementType.Frost]: { id: 'fb48251bc2fe419db1c96abb6df8f486' },
     [ElementType.Light]: { id: 'aaabf6209f4c487aa9250e0b3ac79edc' },
-    [ElementType.Darkness]: { id: 'bc4bba1a9c6343128608a013114b8aeb' },
+    [ElementType.Darkness]: { id: 'd557f1b1f57748d28afc2adbe7cc077e' },
   },
 
   [ArtifactType.Shield]: {
