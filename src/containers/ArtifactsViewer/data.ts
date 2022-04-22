@@ -1,62 +1,17 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import { carouselOptions } from './config';
 import {
+  ArtifactData,
   ArtifactType,
-  CarouselOptions,
+  ElementData,
   ElementType,
   ViewerData,
 } from './types';
 
 const imgPath = `${process.env.PUBLIC_URL}/images/artifact_thumbs`;
 
-/**
- * The viewer options and default values were taken from:
- * https://sketchfab.com/developers/viewer/initialization
- */
-export const viewerOptions = {
-  dnt: 1,
-  camera: 0,
-  /**
-   * @TODO: 'autospin' field should be set to '0' once,
-   * 'Rotation' animation is added to all the artifacts.
-   */
-  autospin: 1,
-  autostart: 0,
-  dof_circle: 0,
-  scrollwheel: 0,
-  transparent: 1,
-  double_click: 0,
-  annotations_visible: 0,
-  orbit_constraint_pan: 1,
-  annotation_tooltip_visible: 0,
-  prevent_user_light_rotation: 1,
-  ui_controls: 0,
-  ui_animations: 0,
-  ui_fullscreen: 0,
-  ui_annotations: 0,
-  ui_general_controls: 0,
-  ui_ar: 0,
-  ui_hint: 0,
-  ui_stop: 0,
-  ui_start: 0,
-  ui_sound: 0,
-  ui_infos: 0,
-  ui_loading: 0,
-  ui_ar_help: 0,
-  ui_ar_qrcode: 0,
-  ui_inspector: 0,
-  ui_watermark: 0,
-};
-
-// Custom viewer configuration.
-export const viewerConfig = {
-  viewerApiVersion: '1.12.0',
-  spinAnimName: 'rotation',
-  spinAnimSpeed: 0.5,
-  initLoadDelay: 1250,
-};
-
-export const viewerData = {
+export const viewerData: ViewerData = {
   [ArtifactType.Hammer]: {
     [ElementType.Neutral]: { id: 'b54078efaa2f466f8d9182a7fa429d6e' },
     [ElementType.Poison]: { id: '73656bd3e6774b0fa8cc17821d6ec5ee' },
@@ -110,22 +65,70 @@ export const viewerData = {
     [ElementType.Light]: { id: 'a9076b1f3c6646498f6970be57b5c955' },
     [ElementType.Darkness]: { id: '70ad2af8b40848ff865d5e6ab130a507' },
   },
-} as ViewerData;
+};
 
-/**
- * The below carousel options, props and default values were taken from:
- * https://github.com/express-labs/pure-react-carousel#carouselprovider-
- */
-export const carouselOptions: CarouselOptions = {
-  naturalSlideWidth: 405,
-  naturalSlideHeight: 514,
-  visibleSlidesDefault: 3,
+export const artifactData: ArtifactData = {
+  [ArtifactType.Hammer]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for hammer.',
+  },
 
-  // Does not offset slide index.
-  visibleSlidesMobile: 1,
+  [ArtifactType.Shield]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for shield.',
+  },
 
-  // Offsets slide index by '1'.
-  visibleSlidesDesktop: 3,
+  [ArtifactType.Sickle]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for sickle.',
+  },
+
+  [ArtifactType.Axe]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for axe.',
+  },
+
+  [ArtifactType.Claw]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for claw.',
+  },
+
+  [ArtifactType.Dagger]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for dagger.',
+  },
+};
+
+export const elementData: ElementData = {
+  [ElementType.Neutral]: {
+    description:
+      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for neutral.',
+  },
+
+  [ElementType.Poison]: {
+    description:
+      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for poison.',
+  },
+
+  [ElementType.Fire]: {
+    description:
+      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for fire.',
+  },
+
+  [ElementType.Frost]: {
+    description:
+      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for frost.',
+  },
+
+  [ElementType.Light]: {
+    description:
+      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for light.',
+  },
+
+  [ElementType.Darkness]: {
+    description:
+      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for darkness.',
+  },
 };
 
 /**

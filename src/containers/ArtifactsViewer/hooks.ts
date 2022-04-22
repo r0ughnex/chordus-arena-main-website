@@ -2,7 +2,7 @@
 import Sketchfab from '@sketchfab/viewer-api';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { viewerConfig, viewerOptions } from './data';
+import { viewerConfig, viewerOptions } from './config';
 import {
   UseArtifactsViewerParams,
   UseArtifactsViewerResponse,

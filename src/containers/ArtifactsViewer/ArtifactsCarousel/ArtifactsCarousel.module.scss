@@ -2,6 +2,7 @@
 @import 'styles/variables';
 
 $acar_slider_pad_h: 25%;
+$acar_slider_pad_v: 12px;
 $acar_slide_border_w: 2px;
 $acar_slide_border_r: 15px;
 $acar_slide_bgcolor: #494949;
@@ -11,20 +12,30 @@ $acar_ovrly_opcty_default: 0.35;
 $acar_ovrly_opcty_selected: 0.18;
 
 .Slider {
-  padding-left: $acar_slider_pad_h;
-  padding-right: $acar_slider_pad_h;
+  padding: $acar_slider_pad_v $acar_slider_pad_h;
 }
 
 .SlideInner {
-  left: 6%;
-  overflow: hidden;
-  width: calc(100% - 12%);
+  @include transitions(box-shadow);
   background-color: $acar_slide_bgcolor;
   border-radius: $acar_slide_border_r / 2;
+  width: calc(100% - 12%);
+  overflow: hidden;
+  left: 6%;
 
   @include mobile-up {
     border-radius: $acar_slide_border_r / 1;
   }
+}
+
+.SlideInnerDefault {
+  @extend .SlideInner;
+  box-shadow: transparent;
+}
+
+.SlideInnerSelected {
+  @extend .SlideInner;
+  @include box-shadow;
 }
 
 .SlideBgImage,

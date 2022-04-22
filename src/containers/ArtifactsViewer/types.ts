@@ -36,6 +36,14 @@ export type ViewerData = {
   [x in ArtifactType]: { [y in ElementType]: { id: string } };
 };
 
+export type ArtifactData = {
+  [x in ArtifactType]: { description: string };
+};
+
+export type ElementData = {
+  [x in ElementType]: { description: string };
+};
+
 export interface ViewerApi {
   stop: (callback?: () => void) => void;
   start: (callback?: () => void) => void;

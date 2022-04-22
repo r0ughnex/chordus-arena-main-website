@@ -51,6 +51,11 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
       {carouselData.map(({ id, picture }, index) => {
         const isSlideSelected = index === currSlide + (isMediaMobileUp ? 1 : 0);
         const backgroundImage = `url(${picture})`;
+
+        const slideInnerClass = isSlideSelected
+          ? styles.SlideInnerSelected
+          : styles.SlideInnerDefault;
+
         const slideOverlayClass = isSlideSelected
           ? styles.SlideOverlaySelected
           : styles.SlideOverlayDefault;
@@ -61,7 +66,7 @@ const ArtifactsCarousel = ({ onChange, className }: ArtifactsCarouselProps) => {
             index={index}
             tabIndex={-1}
             className={styles.SlideOuter}
-            innerClassName={styles.SlideInner}
+            innerClassName={slideInnerClass}
           >
             <div className={slideOverlayClass} />
             <div className={styles.SlideBgImage} style={{ backgroundImage }} />

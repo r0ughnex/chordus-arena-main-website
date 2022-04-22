@@ -3,6 +3,7 @@ import { SectionText, SectionTitle } from 'components/Section';
 import { memo } from 'react';
 import toTitleCase from 'utils/toTitleCase';
 
+import { artifactData, elementData } from '../data';
 import { ArtifactType, ElementType } from '../types';
 import styles from './ElementsSelector.module.scss';
 import { getSelectorElementClassName } from './utils';
@@ -22,6 +23,7 @@ const ElementsSelector = ({
   className,
   onChange,
 }: ElementsSelectorProps) => {
+  const crystalPic = `${imgPath}/${selectedElement}.png`;
   const onElementClick = (elemType: ElementType) => {
     if (elemType === selectedElement) {
       return;
@@ -41,9 +43,7 @@ const ElementsSelector = ({
       </SectionTitle>
 
       <SectionText className={styles.SelectorText}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad minim
-        veniam.
+        {artifactData[selectedArtifact].description}
       </SectionText>
 
       <div className={styles.SelectorElements}>
@@ -64,6 +64,20 @@ const ElementsSelector = ({
             />
           );
         })}
+      </div>
+
+      <div className={styles.ElementInfo}>
+        <h4 className={styles.ElementInfoTitle}>
+          <span
+            className={styles.ElementInfoCrystalImage}
+            style={{ backgroundImage: `url(${crystalPic})` }}
+          />
+          {toTitleCase(selectedElement)}
+        </h4>
+
+        <p className={styles.ElementInfoText}>
+          {elementData[selectedElement].description}
+        </p>
       </div>
     </div>
   );

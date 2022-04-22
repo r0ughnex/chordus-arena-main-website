@@ -1,12 +1,13 @@
 @import 'styles/mixins';
 @import 'styles/variables';
 
-$elements_count: 6;
+$elements_total_count: 6;
 $elements_margin: 1.65em;
 $element_border_w: 2px;
 $element_margin: 5%;
 $element_size: (
-  (100% - ($element_margin * ($elements_count - 1))) / $elements_count
+  (100% - ($element_margin * ($elements_total_count - 1))) /
+    $elements_total_count
 );
 
 $element_color_fire: #841815;
@@ -15,6 +16,11 @@ $element_color_light: #5d5b5a;
 $element_color_poison: #1f5d23;
 $element_color_neutral: #5b5f62;
 $element_color_darkness: #3e2c59;
+
+$info_crystal_size: 26px;
+$info_crystal_margin_top: -($info_crystal_size / 6);
+$info_crystal_margin_left: -($info_crystal_size / 3);
+$info_crystal_margin_right: ($info_crystal_size / 6);
 
 .ElementsSelector {
   text-align: left;
@@ -132,4 +138,33 @@ $element_color_darkness: #3e2c59;
   &:focus {
     background-color: $element_color_darkness;
   }
+}
+
+.ElementInfo {
+  @include box-shadow;
+  border-radius: 15px;
+  margin-top: 1.75em;
+  padding: 2em;
+}
+
+.ElementInfoTitle,
+.ElementInfoText {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.ElementInfoCrystalImage {
+  @include background-image;
+  margin-right: $info_crystal_margin_right;
+  margin-left: $info_crystal_margin_left;
+  margin-top: $info_crystal_margin_top;
+  height: $info_crystal_size;
+  width: $info_crystal_size;
+  vertical-align: middle;
+  display: inline-block;
 }
