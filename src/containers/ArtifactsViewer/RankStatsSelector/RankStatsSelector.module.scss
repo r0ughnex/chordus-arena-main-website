@@ -1,0 +1,75 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+.RankStatsSelector {
+  text-align: left;
+  position: relative;
+}
+
+.SelectorBox {
+  @include box-shadow;
+  border-radius: 15px;
+
+  @include tablet-up {
+    border-radius: 12px;
+  }
+}
+
+.SelectorBoxTop,
+.SelectorBoxBottom {
+  padding: 1.5em;
+
+  @include tablet-up {
+    padding: 2em;
+  }
+}
+
+.SelectorBoxTop {
+  position: relative;
+}
+
+.SelectorBoxImage {
+  @include background-image;
+  background-color: #0f202e;
+  position: absolute;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+
+.SelectorBoxTitle {
+  margin-top: 1.5em;
+  line-height: 1em;
+  margin-bottom: 0;
+
+  @include tablet-up {
+    margin-top: 2em;
+  }
+}
+
+.SelectRankButton,
+.ViewOSCollButton {
+  margin-top: 1.75em;
+
+  @include tablet-up {
+    margin-top: 2.5em;
+  }
+}
+
+.SelectorBoxTitleLine {
+  background-color: #1a6026;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.5em;
+  margin-top: -0.15em;
+  border-radius: 6px;
+  height: 0.8em;
+  width: 6px;
+}
+
+.SelectorBoxText {
+  margin: 0;
+}

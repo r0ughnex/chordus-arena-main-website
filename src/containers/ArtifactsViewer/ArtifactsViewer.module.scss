@@ -100,6 +100,14 @@ $art_selector_w_desktop_lg_max: 540px;
       max-width: $art_selector_w_desktop_lg_max;
     }
   }
+
+  .ArtifactRankSelector {
+    margin-top: $section_pad_v_mobile;
+
+    @include mobile-up {
+      margin-top: 0;
+    }
+  }
 }
 
 .ViewerFrame,

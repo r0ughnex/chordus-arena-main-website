@@ -14,6 +14,7 @@ import { carouselOptions } from './config';
 import { carouselData, viewerData } from './data';
 import ElementsSelector from './ElementsSelector';
 import { useArtifactsViewer } from './hooks';
+import RankStatsSelector from './RankStatsSelector';
 import { ArtifactType, ElementType } from './types';
 
 export interface ArtifactsViewerProps {
@@ -173,7 +174,7 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
             onChange={onElementChange}
           />
 
-          <div className={styles.ArtifactRankSelector} />
+          <RankStatsSelector className={styles.ArtifactRankSelector} />
         </Section>
       </div>
     </motion.div>
