@@ -12,27 +12,30 @@ $color_bg_dark: #101010;
 $color_bg_medm: #191919;
 $color_bg_light: lighten($color_bg_medm, 5%);
 
-/* Typograhpy variables used for desktop. */
-$font_size_h1_desktop: 34px * 1.25;
-$font_size_h2_desktop: 24px * 1.25;
-$font_size_h3_desktop: 14px * 1.25;
-$font_size_h4_desktop: 14px * 1.25;
-$font_size_h5_desktop: 12px * 1.25;
+/* Quotient used for scaling font-size. */
+$font_size_scale_quot: 1.25;
 
-$font_size_p_desktop: 16px * 1.25;
-$font_size_b_desktop: 12px * 1.25;
-$font_size_s_desktop: 12px * 1.25;
+/* Typograhpy variables used for desktop. */
+$font_size_h1_desktop: 34px * $font_size_scale_quot;
+$font_size_h2_desktop: 24px * $font_size_scale_quot;
+$font_size_h3_desktop: 14px * $font_size_scale_quot;
+$font_size_h4_desktop: 14px * $font_size_scale_quot;
+$font_size_h5_desktop: 12px * $font_size_scale_quot;
+
+$font_size_p_desktop: 16px * $font_size_scale_quot;
+$font_size_b_desktop: 12px * $font_size_scale_quot;
+$font_size_s_desktop: 12px * $font_size_scale_quot;
 
 /* Typograhpy variables used for mobile. */
-$font_size_h1_mobile: 30px * 1.25;
-$font_size_h2_mobile: 21px * 1.25;
-$font_size_h3_mobile: 13px * 1.25;
-$font_size_h4_mobile: 13px * 1.25;
-$font_size_h5_mobile: 11px * 1.25;
+$font_size_h1_mobile: 30px * $font_size_scale_quot;
+$font_size_h2_mobile: 21px * $font_size_scale_quot;
+$font_size_h3_mobile: 13px * $font_size_scale_quot;
+$font_size_h4_mobile: 13px * $font_size_scale_quot;
+$font_size_h5_mobile: 11px * $font_size_scale_quot;
 
-$font_size_p_mobile: 14px * 1.25;
-$font_size_b_mobile: 11px * 1.25;
-$font_size_s_mobile: 11px * 1.25;
+$font_size_p_mobile: 14px * $font_size_scale_quot;
+$font_size_b_mobile: 11px * $font_size_scale_quot;
+$font_size_s_mobile: 11px * $font_size_scale_quot;
 
 /* Typograhpy variables that are common. */
 $font_weight_norm: 400;
