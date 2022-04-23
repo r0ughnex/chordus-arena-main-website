@@ -7,6 +7,7 @@ import HeroNav from 'components/HeroNav';
 import RaffleInputs from 'components/RaffleInputs';
 import Section, { SectionText, SectionTitle } from 'components/Section';
 import { motion } from 'framer-motion';
+import useOSCollection from 'hooks/useOSCollection';
 import { selectCounter } from 'models/counter';
 import { initialState as minMaxDefault, selectMinMax } from 'models/minMax';
 import { ChangeEvent, memo, useEffect, useRef, useState } from 'react';
@@ -25,7 +26,7 @@ export interface IntroHeroProps {
 function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   const { PUBLIC_URL = '' } = process.env;
   const videoAsset = 'videos/ca-intro.mp4';
-  const osCollName = 'chordus-arena-genesis';
+  const osCollectionHref = useOSCollection();
 
   const minMax = useSelector(selectMinMax);
   const counter = useSelector(selectCounter);
@@ -164,9 +165,9 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
             {(isModeTimer || isModeStats) && (
               <div className={styles.ButtonWrapperTimer}>
                 <Button
+                  href={osCollectionHref}
                   type={ButtonType.Primary}
                   target={LinkTarget.Blank}
-                  href={`https://opensea.io/collection/${osCollName}`}
                 >
                   Explore
                 </Button>
