@@ -6,7 +6,9 @@ $color_bg_grad_dark: #1b272e;
 $color_bg_grad_medm: #1b272e;
 $color_bg_grad_grey: $color_bg_medm;
 
-$viewer_height_min: 100vh;
+$viewer_height_min_mobile: 85vh;
+$viewer_height_min_desktop: 100vh;
+$viewer_height_min_desktop_lg: 85vh;
 $viewer_bg_rad_grad: radial-gradient(
   circle,
   rgba($color_bg_grad_dark, 0.75) 0%,
@@ -31,8 +33,16 @@ $art_selector_w_desktop_lg_max: 540px;
 
 .ViewerSectionFrame {
   @extend .ViewerSection;
-  min-height: $viewer_height_min;
   background: $viewer_bg_rad_grad;
+  min-height: $viewer_height_min_mobile;
+
+  @include tablet-up {
+    min-height: $viewer_height_min_desktop;
+  }
+
+  @include desktop-lg-up {
+    min-height: $viewer_height_min_desktop_lg;
+  }
 }
 
 .ViewerSectionFrame,
@@ -49,7 +59,7 @@ $art_selector_w_desktop_lg_max: 540px;
   margin-top: -($section_pad_v_mobile * 2);
   padding-right: 0;
   padding-left: 0;
-  z-index: 2;
+  z-index: 0;
 
   @include mobile-up {
     margin-top: -($section_pad_v_desktop * 2);
@@ -61,13 +71,14 @@ $art_selector_w_desktop_lg_max: 540px;
 
   @include mobile-up {
     grid-column-gap: $section_pad_h_desktop;
+    flex-direction: row-reverse;
     justify-content: center;
     display: flex;
   }
 
   @include tablet-up {
     justify-content: space-between;
-    top: $section_pad_v_desktop * 2;
+    top: $section_pad_v_desktop;
     position: absolute;
     width: 100%;
   }
@@ -92,19 +103,70 @@ $art_selector_w_desktop_lg_max: 540px;
 }
 
 .ViewerFrame,
-.ViewerLoader {
+.ViewerLoader,
+.ViewerBlocks {
   z-index: 1;
   left: 0;
   top: 0;
 }
 
-.ViewerFrame {
-  /* pointer-events: none; */
-  position: absolute;
-  height: 100%;
+.ViewerFrame,
+.ViewerBlocks {
   width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 .ViewerLoader {
   @include transform-center;
+}
+
+.ViewerBlocks {
+  pointer-events: none;
+}
+
+.ViewerBlock {
+  display: block;
+  position: absolute;
+  pointer-events: auto;
+}
+
+.ViewerBlockHorz {
+  @extend .ViewerBlock;
+  height: ($section_pad_v_mobile * 2);
+  width: 100%;
+
+  @include mobile-up {
+    height: ($section_pad_v_desktop * 2);
+  }
+}
+
+.ViewerBlockVert {
+  @extend .ViewerBlock;
+  width: ($section_pad_v_mobile * 2);
+  height: 100%;
+
+  @include mobile-up {
+    width: ($section_pad_v_desktop * 2);
+  }
+}
+
+.ViewerBlockTop {
+  @extend .ViewerBlockHorz;
+  top: 0;
+}
+
+.ViewerBlockLeft {
+  @extend .ViewerBlockVert;
+  left: 0;
+}
+
+.ViewerBlockRight {
+  @extend .ViewerBlockVert;
+  right: 0;
+}
+
+.ViewerBlockBottom {
+  @extend .ViewerBlockHorz;
+  bottom: 0;
 }

@@ -145,6 +145,13 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
               </motion.div>
             )}
           </AnimatePresence>
+
+          <div className={styles.ViewerBlocks}>
+            <div className={styles.ViewerBlockTop} />
+            <div className={styles.ViewerBlockLeft} />
+            <div className={styles.ViewerBlockRight} />
+            <div className={styles.ViewerBlockBottom} />
+          </div>
         </Section>
 
         <Section className={styles.ViewerSectionCarousel}>
@@ -159,14 +166,14 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
         </Section>
 
         <Section className={styles.ViewerSectionElements}>
-          <div className={styles.ArtifactRankSelector} />
-
           <ElementsSelector
             className={styles.ArtifactElemSelector}
             selectedArtifact={artifactType}
             selectedElement={elementType}
             onChange={onElementChange}
           />
+
+          <div className={styles.ArtifactRankSelector} />
         </Section>
       </div>
     </motion.div>

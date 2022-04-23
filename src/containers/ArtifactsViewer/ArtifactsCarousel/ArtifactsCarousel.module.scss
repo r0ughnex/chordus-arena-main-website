@@ -13,6 +13,9 @@ $acar_ovrly_opcty_selected: 0.18;
 
 .Slider {
   padding: $acar_slider_pad_v $acar_slider_pad_h;
+  [aria-label='slide'] {
+    cursor: move;
+  }
 }
 
 .SlideInner {

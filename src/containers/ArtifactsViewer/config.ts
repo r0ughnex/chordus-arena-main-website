@@ -14,7 +14,7 @@ export const viewerOptions = {
   autospin: 1,
   autostart: 0,
   dof_circle: 0,
-  scrollwheel: 0,
+  scrollwheel: 1,
   transparent: 1,
   double_click: 0,
   annotations_visible: 0,
