@@ -65,6 +65,15 @@ export const viewerData: ViewerData = {
     [ElementType.Light]: { id: 'a9076b1f3c6646498f6970be57b5c955' },
     [ElementType.Darkness]: { id: '70ad2af8b40848ff865d5e6ab130a507' },
   },
+
+  [ArtifactType.Sword]: {
+    [ElementType.Neutral]: { id: '4d9ec5b74a3b4d7991dd15a69b0712c7' },
+    [ElementType.Poison]: { id: 'a6bcb48fa34f4f2180b35777b17fb57b' },
+    [ElementType.Fire]: { id: '9bd2dcfb9f8b49239b06a85ca35dcd9d' },
+    [ElementType.Frost]: { id: '15e6a3d9f0494ba38437850e1c28ebf2' },
+    [ElementType.Light]: { id: 'd0b2c72bafd447a0ae89aaa72ce971b9' },
+    [ElementType.Darkness]: { id: '26581583e8ef40878629b384d4f640af' },
+  },
 };
 
 export const artifactData: ArtifactData = {
@@ -96,6 +105,11 @@ export const artifactData: ArtifactData = {
   [ArtifactType.Dagger]: {
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for dagger.',
+  },
+
+  [ArtifactType.Sword]: {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for sword.',
   },
 };
 
@@ -139,32 +153,37 @@ export const carouselData = ((repeat = 1) =>
   Array.from({ length: repeat }, () => [
     {
       type: ArtifactType.Hammer,
-      picture: `${imgPath}/hammer.png`,
+      picture: `${imgPath}/${ArtifactType.Hammer}.png`,
     },
 
     {
       type: ArtifactType.Shield,
-      picture: `${imgPath}/shield.png`,
+      picture: `${imgPath}/${ArtifactType.Shield}.png`,
     },
 
     {
       type: ArtifactType.Sickle,
-      picture: `${imgPath}/sickle.png`,
+      picture: `${imgPath}/${ArtifactType.Sickle}.png`,
     },
 
     {
       type: ArtifactType.Axe,
-      picture: `${imgPath}/axe.png`,
+      picture: `${imgPath}/${ArtifactType.Axe}.png`,
     },
 
     {
       type: ArtifactType.Claw,
-      picture: `${imgPath}/claw.png`,
+      picture: `${imgPath}/${ArtifactType.Claw}.png`,
     },
 
     {
       type: ArtifactType.Dagger,
-      picture: `${imgPath}/dagger.png`,
+      picture: `${imgPath}/${ArtifactType.Dagger}.png`,
+    },
+
+    {
+      type: ArtifactType.Sword,
+      picture: `${imgPath}/${ArtifactType.Sword}.png`,
     },
   ]).flat())(carouselOptions.visibleSlidesDefault * 2).map(data => {
   return { ...data, id: uuidv4() };

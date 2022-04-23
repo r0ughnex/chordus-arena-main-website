@@ -17,6 +17,12 @@ $element_color_poison: #1f5d23;
 $element_color_neutral: #5b5f62;
 $element_color_darkness: #3e2c59;
 
+$info_margin_top: 1.75em;
+$info_padding_mobile: 1.5em;
+$info_padding_desktop: 2em;
+$info_border_r_mobile: 12px;
+$info_border_r_desktop: 15px;
+
 $info_crystal_size: 26px;
 $info_crystal_margin_top: -($info_crystal_size / 6);
 $info_crystal_margin_left: -($info_crystal_size / 3);
@@ -142,9 +148,14 @@ $info_crystal_margin_right: ($info_crystal_size / 6);
 
 .ElementInfo {
   @include box-shadow;
-  border-radius: 15px;
-  margin-top: 1.75em;
-  padding: 2em;
+  margin-top: $info_margin_top;
+  padding: $info_padding_mobile;
+  border-radius: $info_border_r_mobile;
+
+  @include tablet-up {
+    padding: $info_padding_desktop;
+    border-radius: $info_border_r_desktop;
+  }
 }
 
 .ElementInfoTitle,

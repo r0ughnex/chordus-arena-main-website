@@ -8,6 +8,7 @@ export enum ArtifactType {
   Hammer = 'hammer',
   Shield = 'shield',
   Sickle = 'sickle',
+  Sword = 'sword',
 }
 
 export enum ElementType {

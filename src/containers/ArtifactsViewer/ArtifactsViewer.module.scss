@@ -26,7 +26,7 @@ $art_selector_w_desktop_lg_max: 540px;
 
 .ViewerSectionContent {
   @extend .ViewerSection;
-  z-index: 2;
+  z-index: 0;
 }
 
 .ViewerSectionFrame {
@@ -49,7 +49,7 @@ $art_selector_w_desktop_lg_max: 540px;
   margin-top: -($section_pad_v_mobile * 2);
   padding-right: 0;
   padding-left: 0;
-  z-index: 0;
+  z-index: 2;
 
   @include mobile-up {
     margin-top: -($section_pad_v_desktop * 2);
@@ -60,9 +60,9 @@ $art_selector_w_desktop_lg_max: 540px;
   display: block;
 
   @include mobile-up {
-    display: flex;
-    justify-content: center;
     grid-column-gap: $section_pad_h_desktop;
+    justify-content: center;
+    display: flex;
   }
 
   @include tablet-up {
@@ -75,6 +75,7 @@ $art_selector_w_desktop_lg_max: 540px;
   .ArtifactRankSelector,
   .ArtifactElemSelector {
     flex-basis: $art_selector_w_mobile;
+    z-index: 2;
 
     @include mobile-up {
       flex-basis: $art_selector_w_desktop;
@@ -98,7 +99,7 @@ $art_selector_w_desktop_lg_max: 540px;
 }
 
 .ViewerFrame {
-  pointer-events: none;
+  /* pointer-events: none; */
   position: absolute;
   height: 100%;
   width: 100%;
