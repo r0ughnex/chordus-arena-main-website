@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 
-import { ButtonType, LinkTarget } from './types';
+import { ButtonSize, ButtonType, LinkTarget } from './types';
 import { getButtonClassName } from './utils';
 
 export interface ButtonProps {
   href?: string;
   type?: ButtonType;
+  size?: ButtonSize;
   target?: LinkTarget;
   disabled?: boolean;
   className?: string;
@@ -17,6 +18,7 @@ export interface ButtonProps {
 function Button({
   href,
   type,
+  size,
   target,
   disabled,
   className,
@@ -30,7 +32,7 @@ function Button({
   };
 
   const buttonElemProps = {
-    className: classNames(getButtonClassName(type), className),
+    className: classNames(getButtonClassName(type, size), className),
     onClick: !disabled ? onButtonClick : undefined,
     disabled,
   };
