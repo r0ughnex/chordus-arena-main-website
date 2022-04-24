@@ -15,8 +15,8 @@ $box_button_mt_mobile: 1.75em;
 $box_title_mt_desktop_lg: 1.5em;
 $box_button_mt_desktop_lg: 2.5em;
 
-$modal_item_flex_b_mobile: 150px;
-$modal_item_flex_b_desktop: 170px;
+$modal_col_gap_mob_sm: 0.25em;
+$modal_col_gap_default: 1.25em;
 
 .RankStatsSelector {
   text-align: left;
@@ -111,6 +111,7 @@ $modal_item_flex_b_desktop: 170px;
 
 .SelectorModal {
   background-color: $color_bg_medm;
+  column-gap: $modal_col_gap_default;
   justify-content: space-around;
   align-items: center;
   position: absolute;
@@ -124,6 +125,7 @@ $modal_item_flex_b_desktop: 170px;
   @include mob-sm {
     padding-left: 0;
     padding-right: 0;
+    column-gap: $modal_col_gap_mob_sm;
   }
 }
 
@@ -131,11 +133,6 @@ $modal_item_flex_b_desktop: 170px;
   border: 0;
   outline: 0;
   cursor: pointer;
-  flex-basis: $modal_item_flex_b_mobile;
-
-  @include mobile-up {
-    flex-basis: $modal_item_flex_b_desktop;
-  }
 
   &:hover,
   &:focus {
