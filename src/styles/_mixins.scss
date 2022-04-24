@@ -1,6 +1,12 @@
 @import './variables';
 
 /* Breakpoint mixins used for layout. */
+@mixin mob-sm {
+  @media (max-width: #{$bp_width_mob_sm - 1px}) {
+    @content;
+  }
+}
+
 @mixin mobile {
   @media (max-width: #{$bp_width_mobile - 1px}) {
     @content;

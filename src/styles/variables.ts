@@ -28,4 +28,5 @@ export enum Breakpoint {
   Desktop = 1920,
   Tablet = 1360,
   Mobile = 1020,
+  MobSm = 430,
 }

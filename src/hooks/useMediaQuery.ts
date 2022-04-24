@@ -46,6 +46,10 @@ function useMediaQuery(query: string): boolean {
   return matches;
 }
 
+export function useIsMediaMobSm() {
+  return useMediaQuery(`max-width: #{${Breakpoint.MobSm - 1}px`);
+}
+
 export function useIsMediaMobile() {
   return useMediaQuery(`max-width: #{${Breakpoint.Mobile - 1}px`);
 }

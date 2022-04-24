@@ -120,6 +120,11 @@ $modal_item_flex_b_desktop: 170px;
   width: 100%;
   left: 0;
   top: 0;
+
+  @include mob-sm {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .ModalItem {
