@@ -1,0 +1,25 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$stat_bar_h: 6px;
+
+.StatBar {
+  position: relative;
+}
+
+.StatBarFull {
+  @include transitions(width, background-color);
+  background-color: $color_rank_default;
+  border-radius: $stat_bar_h;
+  height: $stat_bar_h;
+  display: block;
+  width: 100%;
+}
+
+.StatBarValue {
+  @extend .StatBarFull;
+  position: absolute;
+  width: 0;
+  left: 0;
+  top: 0;
+}
