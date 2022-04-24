@@ -15,7 +15,7 @@ import { carouselData, viewerData } from './data';
 import ElementsSelector from './ElementsSelector';
 import { useArtifactsViewer } from './hooks';
 import RankStatsSelector from './RankStatsSelector';
-import { ArtifactType, ElementType } from './types';
+import { ArtifactRank, ArtifactType, ElementType } from './types';
 
 export interface ArtifactsViewerProps {
   delay?: number;
@@ -44,6 +44,8 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
   const [elementType, setElementType] = useState<ElementType>(
     ElementType.Darkness,
   );
+
+  const [artifactRank] = useState<ArtifactRank>(ArtifactRank.Legendary);
 
   const [artifactType, setArtifactType] = useState<ArtifactType>(
     carouselData[currentSlide + (isMediaMobileUp ? 1 : 0)].type,
@@ -174,7 +176,10 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
             onChange={onElementChange}
           />
 
-          <RankStatsSelector className={styles.ArtifactRankSelector} />
+          <RankStatsSelector
+            className={styles.ArtifactRankSelector}
+            selectedRank={artifactRank}
+          />
         </Section>
       </div>
     </motion.div>

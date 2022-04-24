@@ -19,7 +19,8 @@ $element_color_darkness: #3e2c59;
 
 $info_margin_top: 1.75em;
 $info_padding_mobile: 1.5em;
-$info_padding_desktop: 2em;
+$info_padding_desktop_lg: 2em;
+
 $info_border_r_mobile: 12px;
 $info_border_r_desktop: 15px;
 
@@ -152,8 +153,8 @@ $info_crystal_margin_right: ($info_crystal_size / 6);
   padding: $info_padding_mobile;
   border-radius: $info_border_r_mobile;
 
-  @include tablet-up {
-    padding: $info_padding_desktop;
+  @include desktop-lg-up {
+    padding: $info_padding_desktop_lg;
     border-radius: $info_border_r_desktop;
   }
 }

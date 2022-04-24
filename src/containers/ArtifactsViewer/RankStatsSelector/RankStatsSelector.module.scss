@@ -1,5 +1,19 @@
 @import 'styles/mixins';
 @import 'styles/variables';
+@import 'components/StatBar/StatBar.module.scss';
+@import 'containers/ArtifactsViewer/ElementsSelector/ElementsSelector.module.scss';
+
+$stats_img_bgcolor: #0f202e;
+$stats_img_opacity: 0.75;
+
+$stat_margin_t: 1.5em;
+$stats_margin_b: 0.35em;
+$stats_title_line_h: 0.8em;
+
+$box_title_mt_mobile: 1.25em;
+$box_button_mt_mobile: 1.75em;
+$box_title_mt_desktop_lg: 1.5em;
+$box_button_mt_desktop_lg: 2.5em;
 
 .RankStatsSelector {
   text-align: left;
@@ -8,19 +22,19 @@
 
 .SelectorBox {
   @include box-shadow;
-  border-radius: 15px;
+  border-radius: $info_border_r_mobile;
 
   @include tablet-up {
-    border-radius: 12px;
+    border-radius: $info_border_r_desktop;
   }
 }
 
 .SelectorBoxTop,
 .SelectorBoxBottom {
-  padding: 1.5em;
+  padding: $info_padding_mobile;
 
-  @include tablet-up {
-    padding: 2em;
+  @include desktop-lg-up {
+    padding: $info_padding_desktop_lg;
   }
 }
 
@@ -30,9 +44,9 @@
 
 .SelectorBoxImage {
   @include background-image;
-  background-color: #0f202e;
+  background-color: $stats_img_bgcolor;
+  opacity: $stats_img_opacity;
   position: absolute;
-  opacity: 0.75;
   height: 100%;
   width: 100%;
   z-index: -1;
@@ -41,35 +55,51 @@
 }
 
 .SelectorBoxTitle {
-  margin-top: 1.5em;
   line-height: 1em;
   margin-bottom: 0;
+  margin-top: $box_title_mt_mobile;
 
-  @include tablet-up {
-    margin-top: 2em;
-  }
-}
-
-.SelectRankButton,
-.ViewOSCollButton {
-  margin-top: 1.75em;
-
-  @include tablet-up {
-    margin-top: 2.5em;
+  @include desktop-lg-up {
+    margin-top: $box_title_mt_desktop_lg;
   }
 }
 
 .SelectorBoxTitleLine {
-  background-color: #1a6026;
+  @include transitions(background-color);
+  background-color: $color_rank_default;
+  height: $stats_title_line_h;
+  border-radius: $stat_bar_h;
   vertical-align: middle;
   display: inline-block;
   margin-right: 0.5em;
   margin-top: -0.15em;
-  border-radius: 6px;
-  height: 0.8em;
-  width: 6px;
+  width: $stat_bar_h;
+}
+
+.SelectRankButton,
+.ViewOSCollButton {
+  margin-top: $box_button_mt_mobile;
+
+  @include desktop-lg-up {
+    margin-top: $box_button_mt_desktop_lg;
+  }
+}
+
+.SelectorBoxText,
+.SelectorStats {
+  margin-top: 0;
 }
 
 .SelectorBoxText {
-  margin: 0;
+  margin-bottom: 0;
+}
+
+.SelectorStats {
+  margin-bottom: $stats_margin_b;
+}
+
+.SelectorStatText {
+  color: white;
+  line-height: 1em;
+  margin-top: $stat_margin_t;
 }
