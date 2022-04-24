@@ -3,9 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { carouselOptions } from './config';
 import {
   ArtifactData,
+  ArtifactRank,
   ArtifactType,
   ElementData,
   ElementType,
+  RankStatField,
+  RankStatsData,
   ViewerData,
 } from './types';
 
@@ -73,6 +76,38 @@ export const viewerData: ViewerData = {
     [ElementType.Frost]: { id: '15e6a3d9f0494ba38437850e1c28ebf2' },
     [ElementType.Light]: { id: 'd0b2c72bafd447a0ae89aaa72ce971b9' },
     [ElementType.Darkness]: { id: '26581583e8ef40878629b384d4f640af' },
+  },
+};
+
+export const rankStatsMax: RankStatField = {
+  ratingPoints: 900,
+  bonusStats: 5,
+};
+
+export const rankStatsData: RankStatsData = {
+  [ArtifactRank.Base]: {
+    ratingPoints: 150,
+    bonusStats: 0,
+  },
+
+  [ArtifactRank.Common]: {
+    ratingPoints: 236,
+    bonusStats: 1,
+  },
+
+  [ArtifactRank.Rare]: {
+    ratingPoints: 334,
+    bonusStats: 2,
+  },
+
+  [ArtifactRank.Epic]: {
+    ratingPoints: 435,
+    bonusStats: 3,
+  },
+
+  [ArtifactRank.Legendary]: {
+    ratingPoints: 554,
+    bonusStats: 4,
   },
 };
 

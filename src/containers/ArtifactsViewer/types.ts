@@ -1,6 +1,14 @@
 import { CarouselProviderProps } from 'pure-react-carousel';
 import { MutableRefObject } from 'react';
 
+export enum ArtifactRank {
+  Base = 'base',
+  Common = 'common',
+  Rare = 'rare',
+  Epic = 'epic',
+  Legendary = 'legendary',
+}
+
 export enum ArtifactType {
   Axe = 'axe',
   Claw = 'claw',
@@ -35,6 +43,15 @@ export interface ViewerClient {
 
 export type ViewerData = {
   [x in ArtifactType]: { [y in ElementType]: { id: string } };
+};
+
+export type RankStatField = {
+  ratingPoints: number;
+  bonusStats: number;
+};
+
+export type RankStatsData = {
+  [x in ArtifactRank]: RankStatField;
 };
 
 export type ArtifactData = {
