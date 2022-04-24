@@ -39,7 +39,11 @@ function Button({
 
   return (
     <>
-      {!href && <button {...buttonElemProps}>{children}</button>}
+      {!href && (
+        <button {...buttonElemProps}>
+          <span>{children}</span>
+        </button>
+      )}
 
       {href && (
         <a
@@ -48,7 +52,7 @@ function Button({
           target={!disabled ? target : undefined}
           rel={!disabled && target ? 'noopener noreferrer' : undefined}
         >
-          {children}
+          <span>{children}</span>
         </a>
       )}
     </>

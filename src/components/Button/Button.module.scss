@@ -21,7 +21,6 @@ $btn_color_alternate_dark: darken($btn_color_alternate, 6%);
 
   display: inline-block;
   padding: $btn_padding;
-  vertical-align: middle;
   border-radius: $btn_radius;
   min-width: $btn_width_min_sm;
 
@@ -41,6 +40,10 @@ $btn_color_alternate_dark: darken($btn_color_alternate, 6%);
 
   @include mobile-up {
     min-width: $btn_width_min_md;
+  }
+
+  span {
+    vertical-align: middle;
   }
 
   & + & {
