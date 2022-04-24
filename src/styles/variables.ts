@@ -18,7 +18,7 @@ export enum Color {
   RankBase = '#bebcbe',
   RankComm = '#13881b',
   RankEpic = '#203bc1',
-  RankRare = '#7a186d',
+  RankRare = '#a51ea7',
   RankLegend = '#c3b238',
   RankDefault = '#2b2b2b',
 }

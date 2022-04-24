@@ -15,6 +15,9 @@ $box_button_mt_mobile: 1.75em;
 $box_title_mt_desktop_lg: 1.5em;
 $box_button_mt_desktop_lg: 2.5em;
 
+$modal_item_flex_b_mobile: 150px;
+$modal_item_flex_b_desktop: 170px;
+
 .RankStatsSelector {
   text-align: left;
   position: relative;
@@ -29,6 +32,7 @@ $box_button_mt_desktop_lg: 2.5em;
   }
 }
 
+.SelectorModal,
 .SelectorBoxTop,
 .SelectorBoxBottom {
   padding: $info_padding_mobile;
@@ -66,6 +70,7 @@ $box_button_mt_desktop_lg: 2.5em;
 
 .SelectorBoxTitleLine {
   @include transitions(background-color);
+  transition-duration: $trans_time_slow;
   background-color: $color_rank_default;
   height: $stats_title_line_h;
   border-radius: $stat_bar_h;
@@ -102,4 +107,50 @@ $box_button_mt_desktop_lg: 2.5em;
   color: white;
   line-height: 1em;
   margin-top: $stat_margin_t;
+}
+
+.SelectorModal {
+  background-color: $color_bg_medm;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  flex-wrap: wrap;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.ModalItem {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  flex-basis: $modal_item_flex_b_mobile;
+
+  @include mobile-up {
+    flex-basis: $modal_item_flex_b_desktop;
+  }
+
+  &:hover,
+  &:focus {
+    .ModalItemTitle {
+      color: $color_secondary;
+    }
+  }
+}
+
+.ModalItemTitle {
+  @extend .SelectorBoxTitle;
+  @include transitions(color);
+  color: white;
+  margin-top: 0;
+}
+
+.ModalItemText {
+  margin-bottom: 0;
+}
+
+.ModalItemTitleLine {
+  @extend .SelectorBoxTitleLine;
 }

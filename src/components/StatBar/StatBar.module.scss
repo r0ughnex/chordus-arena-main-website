@@ -9,6 +9,7 @@ $stat_bar_h: 6px;
 
 .StatBarFull {
   @include transitions(width, background-color);
+  transition-duration: $trans_time_slow;
   background-color: $color_rank_default;
   border-radius: $stat_bar_h;
   height: $stat_bar_h;

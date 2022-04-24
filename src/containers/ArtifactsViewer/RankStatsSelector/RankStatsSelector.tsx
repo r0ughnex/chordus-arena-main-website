@@ -3,7 +3,8 @@ import Button, { ButtonSize, ButtonType, LinkTarget } from 'components/Button';
 import StatBar from 'components/StatBar';
 import useOSCollection from 'hooks/useOSCollection';
 import useRankColor from 'hooks/useRankColor';
-import { memo, useState } from 'react';
+import { memo, MouseEvent, useState } from 'react';
+import getRankColor from 'utils/getRankColor';
 import toTitleCase from 'utils/toTitleCase';
 
 import { rankStatsData, rankStatsMax } from '../data';
@@ -11,6 +12,7 @@ import { ArtifactRank } from '../types';
 import styles from './RankStatsSelector.module.scss';
 
 export interface RankStatsSelectorProps {
+  onChange?: (rank: ArtifactRank) => void;
   selectedRank: ArtifactRank;
   className?: string;
 }
@@ -20,10 +22,10 @@ const heroImage = `${process.env.PUBLIC_URL}/images/ca-hero.png`;
 const RankStatsSelector = ({
   selectedRank,
   className,
+  onChange,
 }: RankStatsSelectorProps) => {
   const osCollectionHref = useOSCollection();
   const titleLineColor = useRankColor(selectedRank);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
   const { bonusStats, ratingPoints } = rankStatsData[selectedRank];
   const { bonusStats: bonusStatsMax, ratingPoints: ratingPointsMax } =
@@ -32,9 +34,25 @@ const RankStatsSelector = ({
   const widthStats = (bonusStats / bonusStatsMax) * 100;
   const widthRating = (ratingPoints / ratingPointsMax) * 100;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onCloseButtonClick = () => setIsSelectorVisible(false);
-  const onSelectButtonClick = () => setIsSelectorVisible(true);
+  const onRankSelect = () => {
+    setIsSelectorVisible(true);
+  };
+
+  const onRankChange = (rank: ArtifactRank, e?: MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    setIsSelectorVisible(false);
+    if (rank === selectedRank) {
+      return;
+    }
+
+    if (onChange) {
+      onChange(rank);
+    }
+  };
 
   return (
     <div className={classNames(styles.RankStatsSelector, className)}>
@@ -54,9 +72,9 @@ const RankStatsSelector = ({
           </h2>
 
           <Button
+            onClick={onRankSelect}
             size={ButtonSize.Small}
             type={ButtonType.Primary}
-            onClick={onSelectButtonClick}
             className={styles.SelectRankButton}
           >
             Select artifact rank
@@ -92,6 +110,39 @@ const RankStatsSelector = ({
           </Button>
         </div>
       </div>
+
+      {isSelectorVisible && (
+        <div className={styles.SelectorModal}>
+          {Object.values(ArtifactRank).map((rank, index) => {
+            const { bonusStats, ratingPoints } = rankStatsData[rank];
+            const lineColor = getRankColor(rank);
+            const key = `select_${rank}_${index}`;
+
+            return (
+              <a
+                key={key}
+                className={styles.ModalItem}
+                href={`#select-rank-${rank}`}
+                onClick={e => onRankChange(rank, e)}
+              >
+                <h2 className={styles.ModalItemTitle}>
+                  <span
+                    className={styles.ModalItemTitleLine}
+                    style={{ backgroundColor: lineColor }}
+                  />
+                  {toTitleCase(rank)}
+                </h2>
+
+                <p className={styles.ModalItemText}>
+                  {bonusStats} / {bonusStatsMax} bonus stats
+                  <br />
+                  {ratingPoints} rating points
+                </p>
+              </a>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

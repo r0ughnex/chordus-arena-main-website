@@ -45,7 +45,9 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
     ElementType.Darkness,
   );
 
-  const [artifactRank] = useState<ArtifactRank>(ArtifactRank.Legendary);
+  const [artifactRank, setArtifactRank] = useState<ArtifactRank>(
+    ArtifactRank.Legendary,
+  );
 
   const [artifactType, setArtifactType] = useState<ArtifactType>(
     carouselData[currentSlide + (isMediaMobileUp ? 1 : 0)].type,
@@ -88,6 +90,10 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
 
   const onSlideChange = useCallback((currSlide: number) => {
     setCurrentSlide(currSlide);
+  }, []);
+
+  const onRankChange = useCallback((rank: ArtifactRank) => {
+    setArtifactRank(rank);
   }, []);
 
   const onElementChange = useCallback((elemType: ElementType) => {
@@ -179,6 +185,7 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
           <RankStatsSelector
             className={styles.ArtifactRankSelector}
             selectedRank={artifactRank}
+            onChange={onRankChange}
           />
         </Section>
       </div>
