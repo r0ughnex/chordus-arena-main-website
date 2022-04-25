@@ -18,6 +18,12 @@ $box_button_mt_desktop_lg: 2.5em;
 $modal_col_gap_mob_sm: 0.25em;
 $modal_col_gap_default: 1.25em;
 
+$modal_close_w: 22px;
+$modal_close_pad: 11px;
+$modal_close_opcty_dflt: 0.35;
+$modal_close_opcty_hover: 0.5;
+$modal_close_size: ($modal_close_w + ($modal_close_pad * 2));
+
 .RankStatsSelector {
   text-align: left;
   position: relative;
@@ -126,6 +132,33 @@ $modal_col_gap_default: 1.25em;
     padding-left: 0;
     padding-right: 0;
     column-gap: $modal_col_gap_mob_sm;
+  }
+}
+
+.ModalClose {
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: $modal_close_size;
+  height: $modal_close_size;
+  padding: $modal_close_pad;
+  background-color: $color_bg_dark;
+
+  .ModalCloseIcon {
+    display: block;
+
+    path {
+      @include transitions(opacity);
+      opacity: $modal_close_opcty_dflt;
+      fill: $color_font_medm;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .ModalCloseIcon path {
+      opacity: $modal_close_opcty_hover;
+    }
   }
 }
 

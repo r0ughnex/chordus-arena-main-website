@@ -1,8 +1,10 @@
 import classNames from 'classnames';
 import Button, { ButtonSize, ButtonType, LinkTarget } from 'components/Button';
 import StatBar from 'components/StatBar';
+import { AnimatePresence, motion } from 'framer-motion';
 import useOSCollection from 'hooks/useOSCollection';
 import useRankColor from 'hooks/useRankColor';
+import { ReactComponent as CloseIcon } from 'icons/clear.svg';
 import { memo, MouseEvent, useState } from 'react';
 import getRankColor from 'utils/getRankColor';
 import toTitleCase from 'utils/toTitleCase';
@@ -34,8 +36,41 @@ const RankStatsSelector = ({
   const widthStats = (bonusStats / bonusStatsMax) * 100;
   const widthRating = (ratingPoints / ratingPointsMax) * 100;
 
+  const motionAnimPropsModalRoot = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+    transition: {
+      duration: 0.35,
+    },
+  };
+
+  const motionAnimPropsModalClose = {
+    ...motionAnimPropsModalRoot,
+    transition: {
+      duration: 0.5,
+    },
+  };
+
+  const motionAnimPropsModalItem = {
+    initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
+    transition: {
+      duration: 0.5,
+    },
+  };
+
   const onRankSelect = () => {
     setIsSelectorVisible(true);
+  };
+
+  const onCloseClick = (e?: MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    setIsSelectorVisible(false);
   };
 
   const onRankChange = (rank: ArtifactRank, e?: MouseEvent) => {
@@ -111,38 +146,53 @@ const RankStatsSelector = ({
         </div>
       </div>
 
-      {isSelectorVisible && (
-        <div className={styles.SelectorModal}>
-          {Object.values(ArtifactRank).map((rank, index) => {
-            const { bonusStats, ratingPoints } = rankStatsData[rank];
-            const lineColor = getRankColor(rank);
-            const key = `select_${rank}_${index}`;
+      <AnimatePresence>
+        {isSelectorVisible && (
+          <motion.div
+            {...motionAnimPropsModalRoot}
+            className={styles.SelectorModal}
+          >
+            <motion.a
+              {...motionAnimPropsModalClose}
+              className={styles.ModalClose}
+              href="#close-rank-modal"
+              onClick={onCloseClick}
+            >
+              <CloseIcon className={styles.ModalCloseIcon} />
+            </motion.a>
 
-            return (
-              <a
-                key={key}
-                className={styles.ModalItem}
-                href={`#select-rank-${rank}`}
-                onClick={e => onRankChange(rank, e)}
-              >
-                <h2 className={styles.ModalItemTitle}>
-                  <span
-                    className={styles.ModalItemTitleLine}
-                    style={{ backgroundColor: lineColor }}
-                  />
-                  {toTitleCase(rank)}
-                </h2>
+            {Object.values(ArtifactRank).map((rank, index) => {
+              const { bonusStats, ratingPoints } = rankStatsData[rank];
+              const lineColor = getRankColor(rank);
+              const key = `select_${rank}_${index}`;
 
-                <p className={styles.ModalItemText}>
-                  {bonusStats} / {bonusStatsMax} bonus stats
-                  <br />
-                  {ratingPoints} rating points
-                </p>
-              </a>
-            );
-          })}
-        </div>
-      )}
+              return (
+                <motion.a
+                  key={key}
+                  {...motionAnimPropsModalItem}
+                  className={styles.ModalItem}
+                  href={`#select-rank-${rank}`}
+                  onClick={e => onRankChange(rank, e)}
+                >
+                  <h2 className={styles.ModalItemTitle}>
+                    <span
+                      className={styles.ModalItemTitleLine}
+                      style={{ backgroundColor: lineColor }}
+                    />
+                    {toTitleCase(rank)}
+                  </h2>
+
+                  <p className={styles.ModalItemText}>
+                    {bonusStats} / {bonusStatsMax} bonus stats
+                    <br />
+                    {ratingPoints} rating points
+                  </p>
+                </motion.a>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

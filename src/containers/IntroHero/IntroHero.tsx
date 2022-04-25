@@ -57,8 +57,8 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   };
 
   const motionAnimPropsContent = {
-    animate: { opacity: 1, y: 0 },
     initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
     transition: {
       duration: 0.5,
       delay,
@@ -67,8 +67,8 @@ function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
 
   const motionAnimPropsNav = {
     ...motionAnimPropsContent,
-    animate: { opacity: 1 },
     initial: { opacity: 0 },
+    animate: { opacity: 1 },
   };
 
   useEffect(() => {

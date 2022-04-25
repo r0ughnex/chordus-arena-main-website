@@ -17,8 +17,8 @@ export interface GameInfoProps {
 
 function GameInfo({ delay = 1 }: GameInfoProps) {
   const motionAnimPropsContent = {
-    animate: { opacity: 1, y: 0 },
     initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
     transition: {
       duration: 0.5,
       delay,

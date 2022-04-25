@@ -63,8 +63,8 @@ function ArtifactsViewer({ delay = 1 }: ArtifactsViewerProps) {
   });
 
   const motionAnimPropsWrapper = {
-    animate: { opacity: 1 },
     initial: { opacity: 0 },
+    animate: { opacity: 1 },
     transition: {
       duration: 0.5,
       delay,
