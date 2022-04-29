@@ -120,7 +120,7 @@ const RankStatsSelector = ({
           <p className={styles.SelectorBoxText}>
             Each rank provides a different number of extra stats as well as
             higher possible value ranges. The higher the rank - the more
-            effecient the artifiact.
+            effecient the artifact.
           </p>
 
           <div className={styles.SelectorStats}>
