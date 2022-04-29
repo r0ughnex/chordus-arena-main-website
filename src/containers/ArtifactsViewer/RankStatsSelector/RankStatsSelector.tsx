@@ -118,8 +118,9 @@ const RankStatsSelector = ({
 
         <div className={styles.SelectorBoxBottom}>
           <p className={styles.SelectorBoxText}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, convallis
-            posuere morbi leo massa molestie at.
+            Each rank provides a different number of extra stats as well as
+            higher possible value ranges. The higher the rank - the more
+            effecient the artifiact.
           </p>
 
           <div className={styles.SelectorStats}>

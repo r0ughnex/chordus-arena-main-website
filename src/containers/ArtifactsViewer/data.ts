@@ -114,37 +114,37 @@ export const rankStatsData: RankStatsData = {
 export const artifactData: ArtifactData = {
   [ArtifactType.Hammer]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for hammer.',
+      'A brutal killer that has one goal - smash. A bit heavy, but ensures a one hit kill. Perfect if you have some extra defense and don’t mind sacrificing a bit of speed for extra force.',
   },
 
   [ArtifactType.Shield]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for shield.',
+      'The Attack Shield is a deadly tool that can be used for both offense and defense. The sharp blade and spikes around the shield are deadly and the compact size allows a quick switch to defense mode.',
   },
 
   [ArtifactType.Sickle]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for sickle.',
+      'Built for those who have the skill and power to use this unique weapon. A balanced combination of sharpness, weight, crash ability and maneuver, this weapon will serve well those who can master the right skill.',
   },
 
   [ArtifactType.Axe]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for axe.',
+      'Going to battle with a battle axe is never a bad idea, especially a two handed one. Often fighting an enemy covered with protection, you’d want something that can cut through the thickest shields and armor.',
   },
 
   [ArtifactType.Claw]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for claw.',
+      'Force is not always the best choice, especially if you have the speed and accuracy. With a weapon like this, you will be able to alice and stab your enemy while staying light on your feet allowing you to dodge anything that comes in your way.',
   },
 
   [ArtifactType.Dagger]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for dagger.',
+      'The perfect weapon for fast attacks and great maneuver. While being sharp and deadly, it is also compact enough to allow for quick reaction and provides the ability to dodge attacks.',
   },
 
   [ArtifactType.Sword]: {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua. Ut enim ad for sword.',
+      'Heavy enough to slice anything in its path, the two handed sword will be a great fit for anyone who can lift it. Once the enemy is hit, chances are he won’t be able to get up.',
   },
 };
 
@@ -188,37 +188,37 @@ export const carouselData = ((repeat = 1) =>
   Array.from({ length: repeat }, () => [
     {
       type: ArtifactType.Hammer,
-      picture: `${imgPath}/${ArtifactType.Hammer}.png`,
+      picture: `${imgPath}/hammer.png`,
     },
 
     {
       type: ArtifactType.Shield,
-      picture: `${imgPath}/${ArtifactType.Shield}.png`,
+      picture: `${imgPath}/shield.png`,
     },
 
     {
       type: ArtifactType.Sickle,
-      picture: `${imgPath}/${ArtifactType.Sickle}.png`,
+      picture: `${imgPath}/sickle.png`,
     },
 
     {
       type: ArtifactType.Axe,
-      picture: `${imgPath}/${ArtifactType.Axe}.png`,
+      picture: `${imgPath}/axe.png`,
     },
 
     {
       type: ArtifactType.Claw,
-      picture: `${imgPath}/${ArtifactType.Claw}.png`,
+      picture: `${imgPath}/claw.png`,
     },
 
     {
       type: ArtifactType.Dagger,
-      picture: `${imgPath}/${ArtifactType.Dagger}.png`,
+      picture: `${imgPath}/dagger.png`,
     },
 
     {
       type: ArtifactType.Sword,
-      picture: `${imgPath}/${ArtifactType.Sword}.png`,
+      picture: `${imgPath}/sword.png`,
     },
   ]).flat())(carouselOptions.visibleSlidesDefault * 2).map(data => {
   return { ...data, id: uuidv4() };

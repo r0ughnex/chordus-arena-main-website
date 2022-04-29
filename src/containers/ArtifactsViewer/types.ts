@@ -10,13 +10,13 @@ export enum ArtifactRank {
 }
 
 export enum ArtifactType {
-  Axe = 'axe',
+  Axe = 'great axe',
   Claw = 'claw',
-  Dagger = 'dagger',
+  Dagger = 'sword',
   Hammer = 'hammer',
   Shield = 'shield',
   Sickle = 'sickle',
-  Sword = 'sword',
+  Sword = 'great sword',
 }
 
 export enum ElementType {

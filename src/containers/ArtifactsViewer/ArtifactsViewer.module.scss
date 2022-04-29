@@ -59,7 +59,7 @@ $art_selector_w_desktop_lg_max: 540px;
   margin-top: -$section_pad_v_mobile;
   padding-right: 0;
   padding-left: 0;
-  z-index: 0;
+  z-index: 2;
 
   @include mobile-up {
     margin-top: -$section_pad_v_desktop;
