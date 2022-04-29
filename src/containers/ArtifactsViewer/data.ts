@@ -151,32 +151,32 @@ export const artifactData: ArtifactData = {
 export const elementData: ElementData = {
   [ElementType.Neutral]: {
     description:
-      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for neutral.',
+      'While being a neutral element, this ancient substance is capable of greatly increasing the damage of your weapon. Often it will be enough to defeat any enemy.',
   },
 
   [ElementType.Poison]: {
     description:
-      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for poison.',
+      "If you can't defeat your enemy with one blow, maybe poisoning them is the best tactic. Not only will they suffer an injury, but they will also lose the ability to cast magic spells.",
   },
 
   [ElementType.Fire]: {
     description:
-      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for fire.',
+      'To ensure victory, the fire element will bring some extra damage over time. Even if you run away from the battle, your enemy might still die behind you from the fatal burns.',
   },
 
   [ElementType.Frost]: {
     description:
-      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for frost.',
+      'If it jumps and you can’t hit it - freeze it. This element allows you to freeze your enemy, ensuring a direct hit with your heavy weapon. By the time your enemy can move, it’s too late.',
   },
 
   [ElementType.Light]: {
     description:
-      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for light.',
+      'The light element is a force that can’t be explained, however it seems to enhance both attack and defense, making you almost invincible. Whatever this is, you want it on your side.',
   },
 
   [ElementType.Darkness]: {
     description:
-      'Duis aute irure tempor in reprehenderit in voluptate velit ut esse cillum doloreus eu fugiat nulla pariatur, excepteur sint occaecat cupidatat for darkness.',
+      'The dark element is mysterious and evil in nature, but once you control it, it will allow you to steal life from your opponents while greatly increasing your damage. If you see it against you - run.',
   },
 };
 
