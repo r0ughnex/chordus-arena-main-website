@@ -68,8 +68,8 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
 
   .GridItemImageDefault {
     @extend .GridItemImage;
-    filter: $team_img_filter_inkwell;
     opacity: $team_img_opacity_norm;
+    /* filter: $team_img_filter_inkwell; */
   }
 
   .GridItemImageFallback {

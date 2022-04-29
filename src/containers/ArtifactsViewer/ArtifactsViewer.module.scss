@@ -47,22 +47,22 @@ $art_selector_w_desktop_lg_max: 540px;
 
 .ViewerSectionFrame,
 .ViewerLoader {
-  margin-top: -($section_pad_v_mobile * 1);
+  margin-top: -$section_pad_v_mobile;
 
   @include mobile-up {
-    margin-top: -($section_pad_v_desktop * 1);
+    margin-top: -$section_pad_v_desktop;
   }
 }
 
 .ViewerSectionCarousel {
   @extend .ViewerSection;
-  margin-top: -($section_pad_v_mobile * 2);
+  margin-top: -$section_pad_v_mobile;
   padding-right: 0;
   padding-left: 0;
   z-index: 0;
 
   @include mobile-up {
-    margin-top: -($section_pad_v_desktop * 2);
+    margin-top: -$section_pad_v_desktop;
   }
 }
 

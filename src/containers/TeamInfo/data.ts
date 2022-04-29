@@ -48,6 +48,7 @@ export const teamInfoItems: TeamGridItem[] = [
     id: 'cathy',
     title: 'Cathy',
     text: ['Community manager'],
+    picture: `${imgPath}/cathy.jpg`,
   },
 
   {
@@ -55,5 +56,6 @@ export const teamInfoItems: TeamGridItem[] = [
     title: 'Darkminaz',
     text: ['Concept and 3D artist'],
     artStation: 'https://sketchfab.com/dark-minaz',
+    picture: `${imgPath}/darkminaz.jpg`,
   },
 ];
