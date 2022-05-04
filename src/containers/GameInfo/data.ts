@@ -10,42 +10,42 @@ export const gameInfoItems: InfoGridItem[] = [
   {
     id: 'play-earn',
     Icon: WalletIcon,
-    title: 'Play and earn',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
+    title: 'Play-and-earn',
+    text: 'Start earning by dominating the arena and becoming a legendary Gladiator. The more you win - the more you earn! Each battle won gives you XP as well as token rewards.',
   },
 
   {
     id: 'turn-based',
     Icon: ChessIcon,
     title: 'Turn based strategy',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
+    text: 'Enjoy a strategy game where each turn counts. Apply critical thinking and teamwork to come up with the right strategy and bring victory to your team.',
   },
 
   {
     id: 'pvp',
     Icon: ShieldIcon,
     title: 'Player vs Player',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
+    text: 'Whether you join a team-vs-team match, a duel, guild wars or guild siege, you will get a chance to connect with real people that fight for glory and domination. Now the question is, are you on the same side?',
   },
 
   {
     id: 'pve',
     Icon: CPUIcon,
     title: 'Player vs Environment',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
+    text: 'Fight some mobs to gain experience before getting into a bloody fight against seasoned Gladiators. Get some juicy loot from the world boss fight for a chance to get rare drops.',
   },
 
   {
     id: 'mining',
     Icon: MineIcon,
     title: 'Mining gems',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
+    text: 'Try your luck in the mining shafts for a chance to get super rare loot such as artifacts, gems, gold and more! Use those farmable items to sell for profit, crafting or enhancing existing weapons.',
   },
 
   {
     id: 'staking',
     Icon: SafeIcon,
     title: 'Staking artifacts',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et doloreus magna aliqua.',
+    text: 'Have unused weapons? Rent them to other players and enjoy some passive income. Let others do the dirty work and get a chance to take a share of their loot.',
   },
 ];

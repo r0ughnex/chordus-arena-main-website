@@ -17,8 +17,8 @@ export interface GameInfoProps {
 
 function GameInfo({ delay = 1 }: GameInfoProps) {
   const motionAnimPropsContent = {
-    animate: { opacity: 1, y: 0 },
     initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
     transition: {
       duration: 0.5,
       delay,
@@ -34,10 +34,10 @@ function GameInfo({ delay = 1 }: GameInfoProps) {
           <SectionTitle>Game aspects</SectionTitle>
 
           <SectionText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Chordus Arena is a free-to-play, play-and-earn, multiplayer, turn
+            based strategy game. The game&apos;s main goal is to be fun and
+            addicitve, while enabling players to be part of an ecosystem that
+            mimics aspects of real life such as trading, housing, guilds etc.
           </SectionText>
 
           <InfoGrid items={memoizedInfoItems} />

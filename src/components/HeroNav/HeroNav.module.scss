@@ -47,7 +47,8 @@ $nav_copy_width_max_lg: 100%;
       fill: $color_font_medm;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       path {
         fill: $color_font_white;
       }

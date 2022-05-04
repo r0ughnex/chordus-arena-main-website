@@ -10,6 +10,8 @@ $btn_padding: 0.75em;
 $btn_margin_sm: 1.45em;
 $btn_margin_md: 1.65em;
 $btn_disabled_opacity: 0.5;
+$btn_color_alternate: #606060;
+$btn_color_alternate_dark: darken($btn_color_alternate, 6%);
 
 .Button {
   outline: none;
@@ -40,6 +42,10 @@ $btn_disabled_opacity: 0.5;
     min-width: $btn_width_min_md;
   }
 
+  span {
+    vertical-align: middle;
+  }
+
   & + & {
     margin-left: $btn_margin_sm;
 
@@ -56,21 +62,44 @@ $btn_disabled_opacity: 0.5;
 }
 
 .ButtonPrimary {
-  @extend .Button;
   border-color: $color_primary;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: $color_primary_dark;
     background-color: $color_primary_dark;
   }
 }
 
 .ButtonSecondary {
-  @extend .Button;
   border-color: $color_secondary;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: $color_secondary_dark;
     background-color: $color_secondary_dark;
+  }
+}
+
+.ButtonAlternate {
+  border-color: $btn_color_alternate;
+
+  &:hover,
+  &:focus {
+    border-color: $btn_color_alternate_dark;
+    background-color: $btn_color_alternate_dark;
+  }
+}
+
+.ButtonDefault {
+  @extend .Button;
+}
+
+.ButtonSmall {
+  @extend .Button;
+  font-size: $font_size_b_mobile / $font_size_scale_quot;
+
+  @include mobile-up {
+    font-size: $font_size_b_desktop / $font_size_scale_quot;
   }
 }

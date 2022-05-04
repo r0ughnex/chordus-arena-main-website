@@ -1,18 +1,12 @@
 import classNames from 'classnames';
+import { ReactComponent as ArtStationIcon } from 'icons/artstation.svg';
 import { ReactComponent as LinkedInIcon } from 'icons/linkedin.svg';
 import { ReactComponent as TwitterIcon } from 'icons/twitter.svg';
 import { Fragment, memo } from 'react';
 
+import GridItemLink from './GridItemLink';
 import styles from './TeamGrid.module.scss';
-
-export type TeamGridItem = {
-  linkedIn?: string;
-  twitter?: string;
-  picture?: string;
-  title: string;
-  text: string[];
-  id: string;
-};
+import { TeamGridItem } from './types';
 
 export interface TeamGridProps {
   className?: string;
@@ -24,74 +18,76 @@ function TeamGrid({ className, items }: TeamGridProps) {
   const defaultImage = 'images/ca-logo.png';
   const defaultImageSrc = `${PUBLIC_URL}/${defaultImage}`;
 
-  const linkElemProps = {
-    className: styles.GridItemLink,
-    rel: 'noopener noreferrer',
-    target: '_blank',
-  };
-
   return (
     <div className={classNames(styles.TeamGrid, className)}>
-      {items.map(({ linkedIn, twitter, picture, title, text, id }, index) => {
-        const key = `${id}_${index}`;
-        const hasImage = !!picture;
+      {items.map(
+        (
+          { artStation, linkedIn, twitter, picture, title, text, id },
+          index,
+        ) => {
+          const hasImage = !!picture;
+          const key = `grid-item_${id}_${index}`;
+          const isProfileCreative = !!artStation;
+          const gridItemLinks = [
+            {
+              href: isProfileCreative ? artStation : linkedIn,
+              Icon: isProfileCreative ? ArtStationIcon : LinkedInIcon,
+            },
+            {
+              href: twitter,
+              Icon: TwitterIcon,
+            },
+          ];
 
-        return (
-          <div className={styles.TeamGridItem} key={key}>
-            <div className={styles.GridItemWrap}>
-              <img
-                className={
-                  hasImage
-                    ? styles.GridItemImageDefault
-                    : styles.GridItemImageFallback
-                }
-                src={hasImage ? picture : defaultImageSrc}
-                alt=""
-              />
-            </div>
-
-            <div className={styles.GridItemWrap}>
-              <h4 className={styles.GridItemTitle}>{title}</h4>
-
-              <p className={styles.GridItemText}>
-                {text.map((textContent, index) => {
-                  const key = `text-${index}`;
-                  const isFirst = index === 0;
-                  const textSeperator = ', ';
-
-                  if (isFirst) {
-                    return <Fragment key={key}>{textContent}</Fragment>;
+          return (
+            <div className={styles.TeamGridItem} key={key}>
+              <div className={styles.GridItemWrap}>
+                <img
+                  className={
+                    hasImage
+                      ? styles.GridItemImageDefault
+                      : styles.GridItemImageFallback
                   }
+                  src={hasImage ? picture : defaultImageSrc}
+                  alt=""
+                />
+              </div>
 
-                  return (
-                    <Fragment key={key}>
-                      {textSeperator}
-                      <br />
-                      {textContent}
-                    </Fragment>
-                  );
-                })}
-              </p>
+              <div className={styles.GridItemWrap}>
+                <h4 className={styles.GridItemTitle}>{title}</h4>
 
-              {(linkedIn || twitter) && (
+                <p className={styles.GridItemText}>
+                  {text.map((textContent, index) => {
+                    const key = `item-text_${index}`;
+                    const isFirst = index === 0;
+                    const textSeperator = ', ';
+
+                    if (isFirst) {
+                      return <Fragment key={key}>{textContent}</Fragment>;
+                    }
+
+                    return (
+                      <Fragment key={key}>
+                        {textSeperator}
+                        <br />
+                        {textContent}
+                      </Fragment>
+                    );
+                  })}
+                </p>
+
                 <div className={styles.GridItemLinks}>
-                  {twitter && (
-                    <a {...linkElemProps} href={linkedIn}>
-                      <LinkedInIcon className={styles.GridItemIcon} />
-                    </a>
-                  )}
-
-                  {linkedIn && (
-                    <a {...linkElemProps} href={twitter}>
-                      <TwitterIcon className={styles.GridItemIcon} />
-                    </a>
-                  )}
+                  {gridItemLinks.map(({ href, Icon }, index) => {
+                    const key = `grid-item-link_${href}_${index}`;
+                    const gridItemLinkProps = { id, href, Icon };
+                    return <GridItemLink {...gridItemLinkProps} key={key} />;
+                  })}
                 </div>
-              )}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        },
+      )}
     </div>
   );
 }

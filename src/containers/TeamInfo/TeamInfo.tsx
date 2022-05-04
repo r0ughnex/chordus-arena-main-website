@@ -47,10 +47,10 @@ function TeamInfo({ delay = 1 }: TeamInfoProps) {
             <SectionTitle>Core team</SectionTitle>
 
             <SectionText>
-              We are hiring! Lorem ipsum, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo {renderContactUsLink()}.
+              We are looking to add more artists, game developers and marketers
+              to our growing team. If you are interested in being a part of this
+              project please {renderContactUsLink()} with your information and
+              resume and we will get back to you as soon as we can.
             </SectionText>
 
             <TeamGrid items={memoizedTeamItems} />

@@ -1,0 +1,84 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+$acar_slider_pad_h: 25%;
+$acar_slider_pad_v: 12px;
+$acar_slide_border_w: 2px;
+$acar_slide_border_r: 15px;
+$acar_slide_bgcolor: #494949;
+
+$acar_ovrly_bgcolor: #2d2d2d;
+$acar_ovrly_opcty_default: 0.35;
+$acar_ovrly_opcty_selected: 0.18;
+
+.Slider {
+  padding: $acar_slider_pad_v $acar_slider_pad_h;
+  [aria-label='slide'] {
+    cursor: move;
+  }
+}
+
+.SlideInner {
+  @include transitions(box-shadow);
+  background-color: $acar_slide_bgcolor;
+  border-radius: $acar_slide_border_r / 2;
+  width: calc(100% - 12%);
+  overflow: hidden;
+  left: 6%;
+
+  @include mobile-up {
+    border-radius: $acar_slide_border_r / 1;
+  }
+}
+
+.SlideInnerDefault {
+  @extend .SlideInner;
+  box-shadow: transparent;
+}
+
+.SlideInnerSelected {
+  @extend .SlideInner;
+  @include box-shadow;
+}
+
+.SlideBgImage,
+.SlideOverlay {
+  width: 100%;
+  height: 100%;
+}
+
+.SlideBgImage {
+  @include background-image;
+}
+
+.SlideOverlay {
+  @include transitions(border-color, background-color);
+  border-radius: $acar_slide_border_r / 2;
+  border-width: $acar_slide_border_w;
+  border-style: solid;
+  position: absolute;
+
+  @include mobile-up {
+    border-radius: $acar_slide_border_r / 1;
+  }
+}
+
+.SlideOverlayDefault {
+  @extend .SlideOverlay;
+  border-color: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba($acar_ovrly_bgcolor, $acar_ovrly_opcty_default) 0%,
+    rgba($acar_ovrly_bgcolor, $acar_ovrly_opcty_default) 100%
+  );
+}
+
+.SlideOverlaySelected {
+  @extend .SlideOverlay;
+  border-color: $color_primary;
+  background: linear-gradient(
+    180deg,
+    rgba($color_primary, $acar_ovrly_opcty_selected) 0%,
+    rgba($color_bg_dark, $acar_ovrly_opcty_selected) 100%
+  );
+}

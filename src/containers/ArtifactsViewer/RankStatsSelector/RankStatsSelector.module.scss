@@ -1,0 +1,191 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@import 'components/StatBar/StatBar.module.scss';
+@import 'containers/ArtifactsViewer/ElementsSelector/ElementsSelector.module.scss';
+
+$stats_img_bgcolor: #0f202e;
+$stats_img_opacity: 0.75;
+
+$stat_margin_t: 1.5em;
+$stats_margin_b: 0.35em;
+$stats_title_line_h: 0.8em;
+
+$box_title_mt_mobile: 1.25em;
+$box_button_mt_mobile: 1.75em;
+$box_title_mt_desktop_lg: 1.5em;
+$box_button_mt_desktop_lg: 2.5em;
+
+$modal_col_gap_mob_sm: 0.25em;
+$modal_col_gap_default: 1.25em;
+
+$modal_close_w: 22px;
+$modal_close_pad: 11px;
+$modal_close_opcty_dflt: 0.35;
+$modal_close_opcty_hover: 0.5;
+$modal_close_size: ($modal_close_w + ($modal_close_pad * 2));
+
+.RankStatsSelector {
+  text-align: left;
+  position: relative;
+}
+
+.SelectorBox {
+  @include box-shadow;
+  border-radius: $info_border_r_mobile;
+
+  @include tablet-up {
+    border-radius: $info_border_r_desktop;
+  }
+}
+
+.SelectorModal,
+.SelectorBoxTop,
+.SelectorBoxBottom {
+  padding: $info_padding_mobile;
+
+  @include desktop-lg-up {
+    padding: $info_padding_desktop_lg;
+  }
+}
+
+.SelectorBoxTop {
+  position: relative;
+}
+
+.SelectorBoxImage {
+  @include background-image;
+  background-color: $stats_img_bgcolor;
+  opacity: $stats_img_opacity;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+
+.SelectorBoxTitle {
+  line-height: 1em;
+  margin-bottom: 0;
+  margin-top: $box_title_mt_mobile;
+
+  @include desktop-lg-up {
+    margin-top: $box_title_mt_desktop_lg;
+  }
+}
+
+.SelectorBoxTitleLine {
+  @include transitions(background-color);
+  transition-duration: $trans_time_slow;
+  background-color: $color_rank_default;
+  height: $stats_title_line_h;
+  border-radius: $stat_bar_h;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.5em;
+  margin-top: -0.15em;
+  width: $stat_bar_h;
+}
+
+.SelectRankButton,
+.ViewOSCollButton {
+  margin-top: $box_button_mt_mobile;
+
+  @include desktop-lg-up {
+    margin-top: $box_button_mt_desktop_lg;
+  }
+}
+
+.SelectorBoxText,
+.SelectorStats {
+  margin-top: 0;
+}
+
+.SelectorBoxText {
+  margin-bottom: 0;
+}
+
+.SelectorStats {
+  margin-bottom: $stats_margin_b;
+}
+
+.SelectorStatText {
+  color: white;
+  line-height: 1em;
+  margin-top: $stat_margin_t;
+}
+
+.SelectorModal {
+  background-color: $color_bg_medm;
+  column-gap: $modal_col_gap_default;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  flex-wrap: wrap;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  @include mob-sm {
+    padding-left: 0;
+    padding-right: 0;
+    column-gap: $modal_col_gap_mob_sm;
+  }
+}
+
+.ModalClose {
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: $modal_close_size;
+  height: $modal_close_size;
+  padding: $modal_close_pad;
+  background-color: $color_bg_dark;
+
+  .ModalCloseIcon {
+    display: block;
+
+    path {
+      @include transitions(opacity);
+      opacity: $modal_close_opcty_dflt;
+      fill: $color_font_medm;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .ModalCloseIcon path {
+      opacity: $modal_close_opcty_hover;
+    }
+  }
+}
+
+.ModalItem {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    .ModalItemTitle {
+      color: $color_secondary;
+    }
+  }
+}
+
+.ModalItemTitle {
+  @extend .SelectorBoxTitle;
+  @include transitions(color);
+  color: white;
+  margin-top: 0;
+}
+
+.ModalItemText {
+  margin-bottom: 0;
+}
+
+.ModalItemTitleLine {
+  @extend .SelectorBoxTitleLine;
+}

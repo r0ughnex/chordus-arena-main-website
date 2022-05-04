@@ -9,7 +9,6 @@ $team_grid_icon_size_sm: 35px;
 $team_grid_icon_size_lg: 40px;
 $team_grid_title_margin: 1.12em;
 
-$team_link_margin: 0.75em;
 $team_item_width_min: 290px;
 $team_item_grid_gap_sm: 26px;
 $team_item_grid_gap_lg: 30px;
@@ -69,8 +68,8 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
 
   .GridItemImageDefault {
     @extend .GridItemImage;
-    filter: $team_img_filter_inkwell;
     opacity: $team_img_opacity_norm;
+    /* filter: $team_img_filter_inkwell; */
   }
 
   .GridItemImageFallback {
@@ -102,39 +101,5 @@ $team_img_filter_inkwell: brightness(1.25) contrast(0.85) grayscale(1);
         display: none !important;
       }
     }
-  }
-
-  .GridItemLink {
-    vertical-align: top;
-    display: inline-block;
-    width: $font_size_s_mobile;
-    height: $font_size_s_mobile;
-    margin-right: $team_link_margin;
-
-    path {
-      @include transitions(fill);
-      fill: $color_font_medm;
-    }
-
-    &:hover {
-      path {
-        fill: $color_font_white;
-      }
-    }
-
-    &:last-of-type {
-      margin-right: 0 !important;
-    }
-
-    @include mobile-up {
-      width: $font_size_s_desktop;
-      height: $font_size_s_desktop;
-    }
-  }
-
-  .GridItemIcon {
-    width: 100%;
-    height: auto;
-    display: block;
   }
 }
