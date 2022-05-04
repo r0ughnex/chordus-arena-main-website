@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import Container from 'components/Container';
 import Section from 'components/Section';
+import useOSCollection from 'hooks/useOSCollection';
 import { ReactComponent as DiscordIcon } from 'icons/discord.svg';
 import { ReactComponent as OpenSeaIcon } from 'icons/opensea.svg';
 import { ReactComponent as TwitterIcon } from 'icons/twitter.svg';
@@ -10,10 +11,12 @@ import styles from './HeroNav.module.scss';
 
 export interface HeroNavProps {
   className?: string;
+  copyright?: boolean;
 }
 
-function HeroNav({ className }: HeroNavProps) {
-  const osCollName = 'chordus-arena-genesis';
+function HeroNav({ className, copyright }: HeroNavProps) {
+  const copyYear = new Date().getFullYear();
+  const osCollectionHref = useOSCollection();
   const twitterHandle = 'ChordusArena';
   const discordInvite = 'NesAmStaEc';
 
@@ -27,10 +30,13 @@ function HeroNav({ className }: HeroNavProps) {
     <div className={classNames(styles.HeroNav, className)}>
       <Section className={styles.NavSection}>
         <Container className={styles.NavContainer}>
-          <a
-            {...linkElemProps}
-            href={`https://opensea.io/collection/${osCollName}`}
-          >
+          {copyright && (
+            <p className={styles.NavCopyright}>
+              © {copyYear} Chordus Arena Inc. All Rights Reserved.
+            </p>
+          )}
+
+          <a {...linkElemProps} href={osCollectionHref}>
             <OpenSeaIcon className={styles.NavIcon} />
           </a>
 

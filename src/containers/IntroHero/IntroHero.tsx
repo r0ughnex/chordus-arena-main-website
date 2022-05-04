@@ -1,38 +1,41 @@
 import BgVideo from 'components/BgVideo';
-import Button, { ButtonType } from 'components/Button';
+import Button, { ButtonType, LinkTarget } from 'components/Button';
 import Container from 'components/Container';
 import Counter from 'components/Counter';
 import { getCounterFromTimeLeft } from 'components/Counter/utils';
+import HeroNav from 'components/HeroNav';
 import RaffleInputs from 'components/RaffleInputs';
 import Section, { SectionText, SectionTitle } from 'components/Section';
 import { motion } from 'framer-motion';
+import useOSCollection from 'hooks/useOSCollection';
 import { selectCounter } from 'models/counter';
 import { initialState as minMaxDefault, selectMinMax } from 'models/minMax';
 import { ChangeEvent, memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'store';
 import getTimeLeftFrom from 'utils/getTimeLeftFrom';
-import openInNewTab from 'utils/openInNewTab';
 
-import HeroNav from './HeroNav';
 import styles from './IntroHero.module.scss';
 import { HeroMode } from './types';
 
 export interface IntroHeroProps {
   mode: HeroMode;
+  delay?: number;
 }
 
-function IntroHero({ mode }: IntroHeroProps) {
+function IntroHero({ mode, delay = 1 }: IntroHeroProps) {
   const { PUBLIC_URL = '' } = process.env;
-  const videoAsset = 'videos/ca_intro.mp4';
-  const osCollName = 'chordus-arena-genesis';
+  const videoAsset = 'videos/ca-intro.mp4';
+  const osCollectionHref = useOSCollection();
 
   const minMax = useSelector(selectMinMax);
   const counter = useSelector(selectCounter);
   const dispatch = useDispatch<Dispatch>();
 
+  const isModeStats = mode === HeroMode.Stats;
   const isModeTimer = mode === HeroMode.Timer;
   const isModeRaffle = mode === HeroMode.Raffle;
+
   const countdownRef = useRef<NodeJS.Timeout | null>(null);
   const countdownEnd = 'Thu Mar 14 2022 16:00:00 GMT+1100';
   const [timeLeft, setTimeLeft] = useState(getTimeLeftFrom(countdownEnd));
@@ -45,10 +48,6 @@ function IntroHero({ mode }: IntroHeroProps) {
     dispatch.counter.clearPickedArtifacts();
   };
 
-  const onExploreClick = () => {
-    openInNewTab(`https://opensea.io/collection/${osCollName}`);
-  };
-
   const onMaxInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch.minMax.setMaxInputValue(e.target.value);
   };
@@ -57,19 +56,19 @@ function IntroHero({ mode }: IntroHeroProps) {
     dispatch.minMax.setMinInputValue(e.target.value);
   };
 
-  const motionAnimPropsText = {
-    animate: { opacity: 1, y: 0 },
+  const motionAnimPropsContent = {
     initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
     transition: {
-      delay: 1.5,
       duration: 0.5,
+      delay,
     },
   };
 
   const motionAnimPropsNav = {
-    ...motionAnimPropsText,
-    animate: { opacity: 1 },
+    ...motionAnimPropsContent,
     initial: { opacity: 0 },
+    animate: { opacity: 1 },
   };
 
   useEffect(() => {
@@ -103,7 +102,7 @@ function IntroHero({ mode }: IntroHeroProps) {
 
       <Section className={styles.IntroHero}>
         <Container className={styles.HeroWrapper}>
-          <motion.div {...motionAnimPropsText}>
+          <motion.div {...motionAnimPropsContent}>
             <h3 className={styles.HeroSub}>Chordus Arena</h3>
 
             <SectionTitle className={styles.HeroTitle}>
@@ -163,20 +162,43 @@ function IntroHero({ mode }: IntroHeroProps) {
               </>
             )}
 
-            {isModeTimer && (
-              <>
-                <div className={styles.ButtonWrapperTimer}>
-                  <Button type={ButtonType.Primary} onClick={onExploreClick}>
-                    Explore
-                  </Button>
+            {(isModeTimer || isModeStats) && (
+              <div className={styles.ButtonWrapperTimer}>
+                <Button
+                  href={osCollectionHref}
+                  type={ButtonType.Primary}
+                  target={LinkTarget.Blank}
+                >
+                  Explore
+                </Button>
 
-                  <Button type={ButtonType.Secondary} disabled>
-                    Sold out
-                  </Button>
-                </div>
+                <Button type={ButtonType.Secondary} disabled>
+                  Whitepaper
+                </Button>
+              </div>
+            )}
 
-                <Counter {...getCounterFromTimeLeft(timeLeft)} />
-              </>
+            {isModeTimer && <Counter {...getCounterFromTimeLeft(timeLeft)} />}
+
+            {/**
+             * @TODO: Change this to be retreived,
+             * using the OpenSea NFT API instead.
+             */}
+            {isModeStats && (
+              <Counter
+                left={{
+                  label: 'Collectables',
+                  value: '450',
+                }}
+                center={{
+                  label: 'Members',
+                  value: '2.9k',
+                }}
+                right={{
+                  label: 'Holders',
+                  value: '95',
+                }}
+              />
             )}
           </motion.div>
         </Container>
