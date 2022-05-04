@@ -134,7 +134,7 @@ export const artifactData: ArtifactData = {
 
   [ArtifactType.Claw]: {
     description:
-      'Force is not always the best choice, especially if you have the speed and accuracy. With a weapon like this, you will be able to alice and stab your enemy while staying light on your feet allowing you to dodge anything that comes in your way.',
+      'Force is not always the best choice, especially if you have the speed and accuracy. With a weapon like this, you will be able to slice and stab your enemy while staying light on your feet allowing you to dodge anything that comes in your way.',
   },
 
   [ArtifactType.Dagger]: {
