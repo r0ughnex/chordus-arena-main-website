@@ -22,15 +22,6 @@ export const teamInfoItems: TeamGridItem[] = [
   },
 
   {
-    id: 'pradeep-sekar',
-    title: 'Pradeep Sekar',
-    text: ['Senior Software Engineer', 'evangelist of ImmutableX.'],
-    linkedIn: 'https://www.linkedin.com/in/pradeepsekarg/',
-    twitter: 'https://twitter.com/r0ughnex',
-    picture: `${imgPath}/pradeep-sekar.jpg`,
-  },
-
-  {
     id: 'jonathan',
     title: 'Jonathan',
     text: ['Community and collaborations'],
